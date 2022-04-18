@@ -11,7 +11,7 @@ import java.sql.Date;
  * @author anhtuan
  */
 public class GiamGia {
-    private String maGiamGia;
+    private int maGiamGia;
     private String noiDung;
     private Date ngayBatDau;
     private Date ngayKetThuc;
@@ -19,26 +19,29 @@ public class GiamGia {
     public GiamGia() {
     }
 
-    public GiamGia(String maGiamGia, String noiDung, Date ngayBatDau, Date ngayKetThuc) {
+    public GiamGia(int maGiamGia, String noiDung, Date ngayBatDau, Date ngayKetThuc) {
         this.maGiamGia = maGiamGia;
         this.noiDung = noiDung;
         this.ngayBatDau = ngayBatDau;
         this.ngayKetThuc = ngayKetThuc;
     }
-    
-    
 
+    @Override
+    public String toString() {
+        return this.noiDung;
+    }
+    
     /**
      * @return the maGiamGia
      */
-    public String getMaGiamGia() {
+    public int getMaGiamGia() {
         return maGiamGia;
     }
 
     /**
      * @param maGiamGia the maGiamGia to set
      */
-    public void setMaGiamGia(String maGiamGia) {
+    public void setMaGiamGia(int maGiamGia) {
         this.maGiamGia = maGiamGia;
     }
 

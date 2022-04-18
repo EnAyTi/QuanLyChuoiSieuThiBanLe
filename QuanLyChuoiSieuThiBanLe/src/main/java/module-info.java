@@ -6,4 +6,5 @@ module com.oumarket.quanlychuoisieuthibanle {
 
     opens com.oumarket.quanlychuoisieuthibanle to javafx.fxml;
     exports com.oumarket.quanlychuoisieuthibanle;
+    exports com.oumarket.pojo;
 }

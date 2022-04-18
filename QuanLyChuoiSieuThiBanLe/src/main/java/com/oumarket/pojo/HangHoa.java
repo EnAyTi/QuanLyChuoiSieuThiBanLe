@@ -14,19 +14,19 @@ public class HangHoa {
     private int soLuong;
     private float donGia;
     private String nguonGoc;
-    private String phanLoai;
-    private String maGiamGia;
+    private int maLoai;
+    private int maGiamGia;
 
     public HangHoa() {
     }
 
-    public HangHoa(String maHang, String tenHang, int soLuong, float donGia, String nguonGoc, String phanLoai, String maGiamGia) {
+    public HangHoa(String maHang, String tenHang, int soLuong, float donGia, String nguonGoc, int maLoai, int maGiamGia) {
         this.maHang = maHang;
         this.tenHang = tenHang;
         this.soLuong = soLuong;
         this.donGia = donGia;
         this.nguonGoc = nguonGoc;
-        this.phanLoai = phanLoai;
+        this.maLoai = maLoai;
         this.maGiamGia = maGiamGia;
     }
     
@@ -105,28 +105,28 @@ public class HangHoa {
     /**
      * @return the phanLoai
      */
-    public String getPhanLoai() {
-        return phanLoai;
+    public int getMaLoai() {
+        return maLoai;
     }
 
     /**
-     * @param phanLoai the phanLoai to set
+     * @param maLoai the maLoai to set
      */
-    public void setPhanLoai(String phanLoai) {
-        this.phanLoai = phanLoai;
+    public void setMaLoai(int maLoai) {
+        this.maLoai = maLoai;
     }
 
     /**
      * @return the maGiamGia
      */
-    public String getMaGiamGia() {
+    public int getMaGiamGia() {
         return maGiamGia;
     }
 
     /**
      * @param maGiamGia the maGiamGia to set
      */
-    public void setMaGiamGia(String maGiamGia) {
+    public void setMaGiamGia(int maGiamGia) {
         this.maGiamGia = maGiamGia;
     }
 }
