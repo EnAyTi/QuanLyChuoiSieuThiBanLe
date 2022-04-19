@@ -16,6 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `chinhanh`
+--
+
+DROP TABLE IF EXISTS `chinhanh`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `chinhanh` (
+  `MaChiNhanh` varchar(50) NOT NULL,
+  `SoNha` varchar(45) DEFAULT NULL,
+  `Duong` varchar(45) DEFAULT NULL,
+  `Phuong` varchar(45) DEFAULT NULL,
+  `Quan` varchar(45) DEFAULT NULL,
+  `ThanhPho` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`MaChiNhanh`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `chinhanh`
+--
+
+LOCK TABLES `chinhanh` WRITE;
+/*!40000 ALTER TABLE `chinhanh` DISABLE KEYS */;
+INSERT INTO `chinhanh` VALUES ('32ebf525-972d-4355-9ac5-e5b0caa4ca62','166A - 166B','Trần Văn Quang','10','Tân Bình','Hồ Chí Minh'),('3dc22861-4f30-480f-9fd0-ebfa076ef894','164 ','Nguyễn Văn Cừ','Bồ Đề','Long Biên','Hà Nội'),('8bf3b5f2-3297-4f72-8484-0a11c0de87f9','124 ','Phổ Quang','9','Phú Nhuận','Hồ Chí Minh'),('961f272c-3ec7-4870-9589-fe664f07bff5','560A','Nguyễn Văn Cừ','Gia Thụy','Long Biên','Hà Nội'),('bec09493-d8b7-41c5-bb6b-211daad0abcd','416 ','Phan Huy Ích','12','Gò Vấp','Hồ Chí Minh');
+/*!40000 ALTER TABLE `chinhanh` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `chitiethoadon`
 --
 
@@ -29,9 +57,9 @@ CREATE TABLE `chitiethoadon` (
   `DonGia` int DEFAULT NULL,
   `ThanhTien` int DEFAULT NULL,
   PRIMARY KEY (`MaHoaDon`,`MaHang`),
-  KEY `FK_tbChiTietHoaDon_tbHangHoa1` (`MaHang`),
-  CONSTRAINT `FK_tbChiTietHoaDon_tbHangHoa1` FOREIGN KEY (`MaHang`) REFERENCES `hanghoa` (`MaHang`),
-  CONSTRAINT `FK_tbChiTietHoaDon_tbHoaDon1` FOREIGN KEY (`MaHoaDon`) REFERENCES `hoadon` (`MaHoaDon`)
+  KEY `FK_chitiethoadon_hanghoa1` (`MaHang`),
+  CONSTRAINT `FK_chitiethoadon_hanghoa1` FOREIGN KEY (`MaHang`) REFERENCES `hanghoa` (`MaHang`),
+  CONSTRAINT `FK_chitiethoadon_hoadon1` FOREIGN KEY (`MaHoaDon`) REFERENCES `hoadon` (`MaHoaDon`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -86,10 +114,10 @@ CREATE TABLE `hanghoa` (
   `MaLoai` int DEFAULT NULL,
   `MaGiamGia` int DEFAULT NULL,
   PRIMARY KEY (`MaHang`),
-  KEY `FK_tbHangHoa_tbPhanLoai_idx` (`MaLoai`),
-  KEY `FK_tbHangHoa_tbGiamGia` (`MaGiamGia`),
-  CONSTRAINT `FK_tbHangHoa_tbGiamGia` FOREIGN KEY (`MaGiamGia`) REFERENCES `giamgia` (`MaGiamGia`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `FK_tbHangHoa_tbPhanLoai` FOREIGN KEY (`MaLoai`) REFERENCES `phanloai` (`MaLoai`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  KEY `FK_hanghoa_phanloai` (`MaLoai`),
+  KEY `FK_hanghoa_giamgia` (`MaGiamGia`),
+  CONSTRAINT `FK_hanghoa_giamgia` FOREIGN KEY (`MaGiamGia`) REFERENCES `giamgia` (`MaGiamGia`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FK_hanghoa_phanloai` FOREIGN KEY (`MaLoai`) REFERENCES `phanloai` (`MaLoai`) ON DELETE RESTRICT ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -99,6 +127,7 @@ CREATE TABLE `hanghoa` (
 
 LOCK TABLES `hanghoa` WRITE;
 /*!40000 ALTER TABLE `hanghoa` DISABLE KEYS */;
+INSERT INTO `hanghoa` VALUES ('333ecbbe-d57d-4f1b-b20f-ac995d1b3be0','Kẹo trái cây Starmix gói 80g',123123,24500,'United Kingdom',3,1),('5cd6e335-ecc7-4f2f-a313-fe7b7a44172b','Bia Red Ruby lon 330ml',100,10000,'Vietnam',8,1),('be9364a4-62b6-46a3-be61-46cef5e58219','Nước tăng lực Monster Enery Ultra lon 355ml',100,29600,'Hong Kong',8,2);
 /*!40000 ALTER TABLE `hanghoa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,10 +144,10 @@ CREATE TABLE `hoadon` (
   `MaKH` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `NgayHD` datetime(6) DEFAULT NULL,
   PRIMARY KEY (`MaHoaDon`),
-  KEY `FK_tbHoaDon_tbKhachHang` (`MaKH`),
-  KEY `FK_tbHoaDon_tbNhanVien` (`MaNV`),
-  CONSTRAINT `FK_tbHoaDon_tbKhachHang` FOREIGN KEY (`MaKH`) REFERENCES `khachhang` (`MaKH`),
-  CONSTRAINT `FK_tbHoaDon_tbNhanVien` FOREIGN KEY (`MaNV`) REFERENCES `nhanvien` (`MaNV`)
+  KEY `FK_hoadon_khachhang` (`MaKH`),
+  KEY `FK_hoadon_nhanvien` (`MaNV`),
+  CONSTRAINT `FK_hoadon_khachhang` FOREIGN KEY (`MaKH`) REFERENCES `khachhang` (`MaKH`),
+  CONSTRAINT `FK_hoadon_nhanvien` FOREIGN KEY (`MaNV`) REFERENCES `nhanvien` (`MaNV`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -141,8 +170,9 @@ DROP TABLE IF EXISTS `khachhang`;
 CREATE TABLE `khachhang` (
   `MaKH` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `TenKH` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `DiaChi` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `SDT` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `DiaChi` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `NamSinh` varchar(45) DEFAULT NULL,
   `Email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`MaKH`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -167,11 +197,11 @@ DROP TABLE IF EXISTS `nhanvien`;
 CREATE TABLE `nhanvien` (
   `MaNV` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `TenNV` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `GioiTinh` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `NgaySinh` char(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `DiaChi` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `NamSinh` date DEFAULT NULL,
   `SDT` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `Email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `GioiTinh` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `DiaChi` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`MaNV`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -182,6 +212,7 @@ CREATE TABLE `nhanvien` (
 
 LOCK TABLES `nhanvien` WRITE;
 /*!40000 ALTER TABLE `nhanvien` DISABLE KEYS */;
+INSERT INTO `nhanvien` VALUES ('3cd1480f-f4ab-4660-9166-c2f819c0ee66','nguyen chi tuan','2001-02-13','0382306027','test@gmail.com','Nữ','51 nguyen xuan linh phuong 4 phu nhuan'),('5a82fefa-d378-4609-b074-758aee6effb9','huynh chi tuan','2001-02-10','0382406027','test2@gmail.com','Nữ','51 nguyen linh cung phuong 4 phu nhuan'),('da4e1a1b-e335-4d68-bddc-654749833230','nguyen anh tuan','2001-02-02','0382305027','test@gmail.com','Nam','123 nguyen xuan linh phuong 4 phu nhuan');
 /*!40000 ALTER TABLE `nhanvien` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -218,4 +249,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-18 20:32:34
+-- Dump completed on 2022-04-19 22:16:04
