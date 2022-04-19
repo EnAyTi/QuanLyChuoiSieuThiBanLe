@@ -1,12 +1,15 @@
 C:\Study\Nam3\HocKi2\KiemThuPhanMem\BaiTapLon\QuanLyChuoiSieuThiBanLe\QuanLyChuoiSieuThiBanLe\src\main\java\com\oumarket\pojo\NhanVien.java
 C:\Study\Nam3\HocKi2\KiemThuPhanMem\BaiTapLon\QuanLyChuoiSieuThiBanLe\QuanLyChuoiSieuThiBanLe\src\main\java\com\oumarket\quanlychuoisieuthibanle\FXMLOUMarketController.java
 C:\Study\Nam3\HocKi2\KiemThuPhanMem\BaiTapLon\QuanLyChuoiSieuThiBanLe\QuanLyChuoiSieuThiBanLe\src\main\java\com\oumarket\services\GiamGiaServices.java
+C:\Study\Nam3\HocKi2\KiemThuPhanMem\BaiTapLon\QuanLyChuoiSieuThiBanLe\QuanLyChuoiSieuThiBanLe\src\main\java\com\oumarket\services\NhanVienServices.java
+C:\Study\Nam3\HocKi2\KiemThuPhanMem\BaiTapLon\QuanLyChuoiSieuThiBanLe\QuanLyChuoiSieuThiBanLe\src\main\java\com\oumarket\services\ChiNhanhServices.java
 C:\Study\Nam3\HocKi2\KiemThuPhanMem\BaiTapLon\QuanLyChuoiSieuThiBanLe\QuanLyChuoiSieuThiBanLe\src\main\java\com\oumarket\services\PhanLoaiServies.java
 C:\Study\Nam3\HocKi2\KiemThuPhanMem\BaiTapLon\QuanLyChuoiSieuThiBanLe\QuanLyChuoiSieuThiBanLe\src\main\java\com\oumarket\quanlychuoisieuthibanle\FXMLQuanLyNhanVienController.java
 C:\Study\Nam3\HocKi2\KiemThuPhanMem\BaiTapLon\QuanLyChuoiSieuThiBanLe\QuanLyChuoiSieuThiBanLe\src\main\java\com\oumarket\pojo\PhanLoai.java
 C:\Study\Nam3\HocKi2\KiemThuPhanMem\BaiTapLon\QuanLyChuoiSieuThiBanLe\QuanLyChuoiSieuThiBanLe\src\main\java\com\oumarket\pojo\ChiTietHoaDon.java
 C:\Study\Nam3\HocKi2\KiemThuPhanMem\BaiTapLon\QuanLyChuoiSieuThiBanLe\QuanLyChuoiSieuThiBanLe\src\main\java\com\oumarket\pojo\HangHoa.java
 C:\Study\Nam3\HocKi2\KiemThuPhanMem\BaiTapLon\QuanLyChuoiSieuThiBanLe\QuanLyChuoiSieuThiBanLe\src\main\java\com\oumarket\utils\JdbcUtils.java
+C:\Study\Nam3\HocKi2\KiemThuPhanMem\BaiTapLon\QuanLyChuoiSieuThiBanLe\QuanLyChuoiSieuThiBanLe\src\main\java\com\oumarket\pojo\ChiNhanh.java
 C:\Study\Nam3\HocKi2\KiemThuPhanMem\BaiTapLon\QuanLyChuoiSieuThiBanLe\QuanLyChuoiSieuThiBanLe\src\main\java\com\oumarket\pojo\KhachHang.java
 C:\Study\Nam3\HocKi2\KiemThuPhanMem\BaiTapLon\QuanLyChuoiSieuThiBanLe\QuanLyChuoiSieuThiBanLe\src\main\java\com\oumarket\quanlychuoisieuthibanle\App.java
 C:\Study\Nam3\HocKi2\KiemThuPhanMem\BaiTapLon\QuanLyChuoiSieuThiBanLe\QuanLyChuoiSieuThiBanLe\src\main\java\com\oumarket\quanlychuoisieuthibanle\FXMLQuanLyHangHoaController.java

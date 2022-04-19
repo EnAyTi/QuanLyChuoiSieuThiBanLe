@@ -25,7 +25,7 @@ public class PhanLoaiServies {
             ResultSet rs = stm.executeQuery("SELECT * FROM phanloai");
             
             while (rs.next()) {
-                PhanLoai p = new PhanLoai(rs.getInt("MaLoai"), rs.getString("TenLoai"));
+                PhanLoai p = new PhanLoai(rs.getInt("maLoai"), rs.getString("tenLoai"));
                 results.add(p);
             }
         }

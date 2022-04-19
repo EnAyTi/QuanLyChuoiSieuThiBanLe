@@ -4,6 +4,8 @@
  */
 package com.oumarket.pojo;
 
+import java.sql.Date;
+
 /**
  *
  * @author anhtuan
@@ -11,23 +13,23 @@ package com.oumarket.pojo;
 public class NhanVien {
     private String maNV;
     private String tenNV;
-    private String gioiTinh;
-    private int namSinh;
-    private String diaChi;
+    private Date namSinh;
     private String sdt;
     private String email;
-
+    private String gioiTinh;
+    private String diaChi;
+    
     public NhanVien() {
     }
 
-    public NhanVien(String maNV, String tenNV, String gioiTinh, int namSinh, String diaChi, String sdt, String email) {
+    public NhanVien(String maNV, String tenNV, Date namSinh, String sdt, String email, String gioiTinh, String diaChi) {
         this.maNV = maNV;
         this.tenNV = tenNV;
-        this.gioiTinh = gioiTinh;
         this.namSinh = namSinh;
-        this.diaChi = diaChi;
         this.sdt = sdt;
         this.email = email;
+        this.gioiTinh = gioiTinh;
+        this.diaChi = diaChi;
     }
 
     
@@ -77,14 +79,14 @@ public class NhanVien {
     /**
      * @return the namSinh
      */
-    public int getNamSinh() {
+    public Date getNamSinh() {
         return namSinh;
     }
 
     /**
      * @param namSinh the namSinh to set
      */
-    public void setNamSinh(int namSinh) {
+    public void setNamSinh(Date namSinh) {
         this.namSinh = namSinh;
     }
 

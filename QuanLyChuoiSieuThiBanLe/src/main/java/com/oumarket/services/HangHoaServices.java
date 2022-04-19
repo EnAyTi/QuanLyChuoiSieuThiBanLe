@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,7 +61,24 @@ public class HangHoaServices {
        }
     }
     
-    public boolean deleteQuestion(String maHang) throws SQLException {
+    public List<HangHoa> getHangHoas() throws SQLException {
+        List<HangHoa> hanghoas = new ArrayList<>();
+        try (Connection conn = JdbcUtils.getConn()) {
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT * FROM hanghoa");
+            
+            while (rs.next()) {
+                HangHoa nv = new HangHoa(rs.getString("maHang"), rs.getString("tenHang"), rs.getInt("soLuong"), 
+                                        rs.getFloat("donGia"), rs.getString("nguonGoc"), rs.getInt("maLoai"), 
+                                        rs.getInt("maGiamGia"));
+                hanghoas.add(nv);
+            }
+        }
+       
+        return hanghoas; 
+    }
+    
+    public boolean deleteHangHoa(String maHang) throws SQLException {
        try (Connection conn = JdbcUtils.getConn()) {
            PreparedStatement stm = conn.prepareStatement("DELETE FROM hanghoa WHERE MaHang=?");
            stm.setString(1, maHang);
@@ -69,7 +87,7 @@ public class HangHoaServices {
        }
     }
     
-    public HangHoa getQuestionById(String maHang) throws SQLException {
+    public HangHoa getHangHoaById(String maHang) throws SQLException {
        try (Connection conn = JdbcUtils.getConn()) {
            PreparedStatement stm = conn.prepareStatement("SELECT * FROM hanghoa WHERE MaHang=?");
            stm.setString(1, maHang);

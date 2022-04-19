@@ -25,8 +25,8 @@ public class GiamGiaServices {
             ResultSet rs = stm.executeQuery("SELECT * FROM giamgia");
             
             while (rs.next()) {
-                GiamGia g = new GiamGia(rs.getInt("MaGiamGia"), rs.getString("NoiDung"), 
-                                        rs.getDate("NgayBatDau"), rs.getDate("NgayKetThuc"));
+                GiamGia g = new GiamGia(rs.getInt("maGiamGia"), rs.getString("noiDung"), 
+                                        rs.getDate("ngayBatDau"), rs.getDate("ngayKetThuc"));
                 results.add(g);
             }
         }

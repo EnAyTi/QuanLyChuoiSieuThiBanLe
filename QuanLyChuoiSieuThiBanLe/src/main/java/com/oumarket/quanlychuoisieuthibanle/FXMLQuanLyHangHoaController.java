@@ -37,8 +37,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
  */
 public class FXMLQuanLyHangHoaController implements Initializable {
     private static final HangHoaServices s = new HangHoaServices();
+    
     @FXML private TextField txtKeyword;
     @FXML private TableView<HangHoa> tbHangHoa;
+    
     @FXML private ComboBox<PhanLoai> cbPhanLoai;
     @FXML private ComboBox<GiamGia> cbGiamGia;
     @FXML private TextField txtTenHang;
@@ -53,10 +55,10 @@ public class FXMLQuanLyHangHoaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        PhanLoaiServies s = new PhanLoaiServies();
+        PhanLoaiServies p = new PhanLoaiServies();
         GiamGiaServices g = new GiamGiaServices();
         try {
-            this.cbPhanLoai.setItems(FXCollections.observableList(s.getPhanLoai()));
+            this.cbPhanLoai.setItems(FXCollections.observableList(p.getPhanLoai()));
             this.cbGiamGia.setItems(FXCollections.observableList(g.getGiamGia()));
         } catch (SQLException ex) {
             Logger.getLogger(FXMLQuanLyHangHoaController.class.getName()).log(Level.SEVERE, null, ex);
@@ -87,7 +89,7 @@ public class FXMLQuanLyHangHoaController implements Initializable {
         
         TableColumn colSoLuong = new TableColumn("Số Lượng");
         colSoLuong.setCellValueFactory(new PropertyValueFactory("soLuong"));
-        
+                
         TableColumn colDonGia = new TableColumn("Đơn giá");
         colDonGia.setCellValueFactory(new PropertyValueFactory("donGia"));
         
@@ -102,14 +104,14 @@ public class FXMLQuanLyHangHoaController implements Initializable {
         
         TableColumn colDel = new TableColumn();
         colDel.setCellFactory((p) -> {
-            Button btn = new Button("Delete");
+            Button btn = new Button("Xoá");
             
             btn.setOnAction((evt) -> {
                 TableCell c = (TableCell)((Button)evt.getSource()).getParent();
                 HangHoa h = (HangHoa) c.getTableRow().getItem();
                 
                 try {
-                    if (s.deleteQuestion(h.getMaHang()) == true) {
+                    if (s.deleteHangHoa(h.getMaHang()) == true) {
                         Utils.getBox("Xoá thành công", Alert.AlertType.INFORMATION).show();
                         this.loadTableData(null);
                     } else {
@@ -125,9 +127,34 @@ public class FXMLQuanLyHangHoaController implements Initializable {
             return cell;
         });
         
+        TableColumn colEdit = new TableColumn();
+        colEdit.setCellFactory((p)-> {
+            Button btn = new Button("Sửa");
+            
+            btn.setOnAction((evt) -> {
+                TableCell c = (TableCell)((Button)evt.getSource()).getParent();
+                HangHoa h = (HangHoa) c.getTableRow().getItem();
+                
+                //h.getMaHang()
+            });
+            
+            TableCell cell = new TableCell();
+            cell.setGraphic(btn);
+            return cell;
+        });
+        
         this.tbHangHoa.getColumns().addAll(colMaHang, colTenHang, colSoLuong, 
-                                        colDonGia, colNguonGoc, colMaLoai, colMaGiamGia, colDel);
+                                        colDonGia, colNguonGoc, colMaLoai, colMaGiamGia, colDel, colEdit);
     } 
+    
+    public void refreshTable(ActionEvent event) {
+        HangHoaServices nv = new HangHoaServices();
+        try {
+            this.tbHangHoa.setItems(FXCollections.observableList(nv.getHangHoas()));
+        } catch (SQLException ex) {
+            Logger.getLogger(FXMLQuanLyHangHoaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     public void themHangHoaHandler(ActionEvent event) {
         HangHoa h = new HangHoa(UUID.randomUUID().toString(), this.txtTenHang.getText(), 
@@ -139,7 +166,6 @@ public class FXMLQuanLyHangHoaController implements Initializable {
         HangHoaServices hs = new HangHoaServices();
         try {
             hs.themHangHoa(h);
-            
             Utils.getBox("Thêm hàng hoá thành công", Alert.AlertType.INFORMATION).show();
         } catch (SQLException ex) {
             Utils.getBox("Thêm hàng hoá không thành công", Alert.AlertType.WARNING).show();
