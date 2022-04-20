@@ -19,6 +19,21 @@ import java.util.List;
  * @author anhtuan
  */
 public class HangHoaServices {
+    public void editHangHoa(HangHoa h) throws SQLException {
+        try (Connection conn = JdbcUtils.getConn()) {
+            PreparedStatement stm = conn.prepareStatement("UPDATE hanghoa SET "+"TenHang=?,"+"SoLuong=?,"+"DonGia=?,"+"NguonGoc=?,"+"MaLoai=?,"+"MaGiamGia=? WHERE MaHang=?");
+            stm.setString(1, h.getTenHang());
+            stm.setInt(2, h.getSoLuong());
+            stm.setFloat(3, h.getDonGia());
+            stm.setString(4, h.getNguonGoc());
+            stm.setInt(5, h.getMaLoai());
+            stm.setInt(6, h.getMaGiamGia());
+            stm.setString(7, h.getMaHang());
+            
+            stm.executeUpdate();
+        }
+    }
+    
     public void themHangHoa(HangHoa h) throws SQLException {
         try (Connection conn = JdbcUtils.getConn()) {
             PreparedStatement stm = conn.prepareStatement("INSERT INTO hanghoa(MaHang, TenHang, SoLuong, DonGia, NguonGoc, MaLoai, MaGiamGia) VALUES(?, ?, ?, ?, ?, ?, ?)");

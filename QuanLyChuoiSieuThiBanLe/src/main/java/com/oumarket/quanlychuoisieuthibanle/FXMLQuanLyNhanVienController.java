@@ -40,6 +40,7 @@ public class FXMLQuanLyNhanVienController implements Initializable {
     @FXML private TextField txtKeyword;
     @FXML private TableView<NhanVien> tbNhanVien;
     
+    @FXML private TextField txtMaNhanVien;
     @FXML private TextField txtHoTen;
     @FXML private DatePicker dpNamSinh;
     @FXML private TextField txtSDT;
@@ -135,7 +136,16 @@ public class FXMLQuanLyNhanVienController implements Initializable {
                 TableCell c = (TableCell)((Button)evt.getSource()).getParent();
                 NhanVien nv = (NhanVien) c.getTableRow().getItem();
                 
-                //nv.getMaNV()
+                this.txtMaNhanVien.setText(nv.getMaNV());
+                this.txtHoTen.setText(nv.getTenNV());
+                this.dpNamSinh.setValue(nv.getNamSinh().toLocalDate());
+                this.txtSDT.setText(nv.getSdt());
+                if (nv.getGioiTinh().equals("Nam"))
+                    this.rdoNam.setSelected(true);
+                else
+                    this.rdoNu.setSelected(true);
+                this.txtEmail.setText(nv.getEmail());
+                this.txtDiaChi.setText(nv.getDiaChi());
             });
             
             TableCell cell = new TableCell();
@@ -147,13 +157,15 @@ public class FXMLQuanLyNhanVienController implements Initializable {
                                             colSDT, colEmail, colGioiTinh, colDiaChi, colDel, colEdit);
     }
     
-    public void refreshTable(ActionEvent event) {
-        NhanVienServices nv = new NhanVienServices();
-        try {
-            this.tbNhanVien.setItems(FXCollections.observableList(nv.getNhanViens()));
-        } catch (SQLException ex) {
-            Logger.getLogger(FXMLQuanLyNhanVienController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void clearInput(ActionEvent event) {
+        this.txtMaNhanVien.setText(null);
+        this.txtHoTen.setText(null);
+        this.dpNamSinh.setValue(null);
+        this.rdoNam.setSelected(false);
+        this.rdoNu.setSelected(false);
+        this.txtSDT.setText(null);
+        this.txtEmail.setText(null);
+        this.txtDiaChi.setText(null);
     }
     
     public void themNhanVienHandler(ActionEvent event) {
@@ -169,6 +181,8 @@ public class FXMLQuanLyNhanVienController implements Initializable {
             this.loadTableData(null);
             this.txtHoTen.setText(null);
             this.dpNamSinh.setValue(null);
+            this.rdoNam.setSelected(false);
+            this.rdoNu.setSelected(false);
             this.txtSDT.setText(null);
             this.txtEmail.setText(null);
             this.txtDiaChi.setText(null);
@@ -178,4 +192,25 @@ public class FXMLQuanLyNhanVienController implements Initializable {
         
    }
     
+    public void editNhanVienHandler(ActionEvent event) {
+        NhanVien n = new NhanVien(this.txtMaNhanVien.getText(), this.txtHoTen.getText(), 
+                                java.sql.Date.valueOf(this.dpNamSinh.getValue()), this.txtSDT.getText(), 
+                                this.txtEmail.getText(), rdoLabel, this.txtDiaChi.getText());
+        NhanVienServices nv = new NhanVienServices();
+        try {
+            nv.editNhanVien(n);
+            Utils.getBox("Sửa nhân viên thành công", Alert.AlertType.INFORMATION).show();
+            this.loadTableData(null);
+            this.txtMaNhanVien.setText(null);
+            this.txtHoTen.setText(null);
+            this.dpNamSinh.setValue(null);
+            this.rdoNam.setSelected(false);
+            this.rdoNu.setSelected(false);
+            this.txtSDT.setText(null);
+            this.txtEmail.setText(null);
+            this.txtDiaChi.setText(null);
+        } catch (SQLException ex) {
+            Utils.getBox("Sửa nhân viên không thành công", Alert.AlertType.WARNING).show();
+        }
+    }
 }

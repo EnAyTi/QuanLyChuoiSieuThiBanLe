@@ -134,6 +134,15 @@ public class FXMLQuanLyChiNhanhController implements Initializable {
                                             colPhuong, colQuan, colThanhPho, colDel, colEdit);
     }
     
+    public void clearInput(ActionEvent event) {
+        this.txtMaChiNhanh.setText(null);
+        this.txtSoNha.setText(null);
+        this.txtDuong.setText(null);
+        this.txtPhuong.setText(null);
+        this.txtQuan.setText(null);
+        this.txtThanhPho.setText(null);
+    }
+    
     public void themChiNhanhHandler(ActionEvent event) {
         ChiNhanh c = new ChiNhanh(UUID.randomUUID().toString(), this.txtSoNha.getText(), 
                                 this.txtDuong.getText(), this.txtPhuong.getText(), 

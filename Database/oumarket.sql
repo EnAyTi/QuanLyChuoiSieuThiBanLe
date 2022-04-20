@@ -212,7 +212,7 @@ CREATE TABLE `nhanvien` (
 
 LOCK TABLES `nhanvien` WRITE;
 /*!40000 ALTER TABLE `nhanvien` DISABLE KEYS */;
-INSERT INTO `nhanvien` VALUES ('3cd1480f-f4ab-4660-9166-c2f819c0ee66','nguyen chi tuan','2001-02-13','0382306027','test@gmail.com','Nữ','51 nguyen xuan linh phuong 4 phu nhuan'),('5a82fefa-d378-4609-b074-758aee6effb9','huynh chi tuan','2001-02-10','0382406027','test2@gmail.com','Nữ','51 nguyen linh cung phuong 4 phu nhuan'),('da4e1a1b-e335-4d68-bddc-654749833230','nguyen anh tuan','2001-02-02','0382305027','test@gmail.com','Nam','123 nguyen xuan linh phuong 4 phu nhuan');
+INSERT INTO `nhanvien` VALUES ('3cd1480f-f4ab-4660-9166-c2f819c0ee66','12313','2001-02-13','0382306027','test@gmail.com','Nam','51 nguyen xuan linh phuong 4 phu nhuan'),('5a82fefa-d378-4609-b074-758aee6effb9','huynh chi tuan','2001-02-10','0382406027','test2@gmail.com','Nữ','51 nguyen linh cung phuong 4 phu nhuan'),('da4e1a1b-e335-4d68-bddc-654749833230','nguyen anh tuan','2001-02-02','0382305027','test@gmail.com','Nam','123 nguyen xuan linh phuong 4 phu nhuan');
 /*!40000 ALTER TABLE `nhanvien` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -249,4 +249,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-19 22:16:04
+-- Dump completed on 2022-04-20 18:03:15

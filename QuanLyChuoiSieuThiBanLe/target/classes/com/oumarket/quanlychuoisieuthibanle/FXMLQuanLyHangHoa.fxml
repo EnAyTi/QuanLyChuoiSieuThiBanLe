@@ -59,7 +59,8 @@
       <ComboBox fx:id="cbPhanLoai" layoutX="782.0" layoutY="421.0" prefHeight="26.0" prefWidth="190.0" />
       <ComboBox fx:id="cbGiamGia" layoutX="782.0" layoutY="483.0" prefHeight="26.0" prefWidth="190.0" />
       <Separator layoutX="15.0" layoutY="590.0" prefHeight="6.0" prefWidth="980.0" />
-      <Button layoutX="356.0" layoutY="604.0" mnemonicParsing="false" onAction="#themHangHoaHandler" prefHeight="26.0" prefWidth="80.0" text="Thêm Mới" />
-      <Button layoutX="566.0" layoutY="604.0" mnemonicParsing="false" onAction="#editHangHoaHandler" prefHeight="26.0" prefWidth="80.0" text="Cập Nhật" />
+      <Button layoutX="247.0" layoutY="604.0" mnemonicParsing="false" onAction="#themHangHoaHandler" prefHeight="26.0" prefWidth="80.0" text="Thêm Mới" />
+      <Button layoutX="465.0" layoutY="604.0" mnemonicParsing="false" onAction="#editHangHoaHandler" prefHeight="26.0" prefWidth="80.0" text="Cập Nhật" />
+      <Button layoutX="682.0" layoutY="604.0" mnemonicParsing="false" onAction="#clearInput" prefHeight="26.0" prefWidth="80.0" text="Clear" />
    </children>
 </AnchorPane>

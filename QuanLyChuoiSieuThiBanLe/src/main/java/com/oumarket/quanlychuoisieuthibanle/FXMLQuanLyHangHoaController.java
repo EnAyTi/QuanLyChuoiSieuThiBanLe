@@ -138,10 +138,11 @@ public class FXMLQuanLyHangHoaController implements Initializable {
                 
                 this.txtMaHang.setText(h.getMaHang());
                 this.txtTenHang.setText(h.getTenHang());
-                //this.txtDonGia;
-                //this.txtSoLuong;
+                this.txtDonGia.setText(String.valueOf(h.getDonGia()));
+                this.txtSoLuong.setText(String.valueOf(h.getSoLuong()));
                 this.txtNguonGoc.setText(h.getNguonGoc());
-                //this.cbPhanLoai.setValue();
+                this.cbPhanLoai.getSelectionModel().select(h.getMaLoai()-1);
+                this.cbGiamGia.getSelectionModel().select(h.getMaGiamGia()-1);
            });
             
             TableCell cell = new TableCell();
@@ -153,13 +154,14 @@ public class FXMLQuanLyHangHoaController implements Initializable {
                                             colDonGia, colNguonGoc, colMaLoai, colMaGiamGia, colDel, colEdit);
     } 
     
-    public void refreshTable(ActionEvent event) {
-        HangHoaServices nv = new HangHoaServices();
-        try {
-            this.tbHangHoa.setItems(FXCollections.observableList(nv.getHangHoas()));
-        } catch (SQLException ex) {
-            Logger.getLogger(FXMLQuanLyHangHoaController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void clearInput(ActionEvent event) {
+        this.txtMaHang.setText(null);
+        this.txtTenHang.setText(null);
+        this.txtDonGia.setText(null);
+        this.txtSoLuong.setText(null);
+        this.txtNguonGoc.setText(null);
+        this.cbPhanLoai.getSelectionModel().clearSelection();
+        this.cbGiamGia.getSelectionModel().clearSelection();
     }
     
     public void themHangHoaHandler(ActionEvent event) {
@@ -186,6 +188,25 @@ public class FXMLQuanLyHangHoaController implements Initializable {
     }
     
     public void editHangHoaHandler(ActionEvent event) {
-        
+        HangHoa h = new HangHoa(this.txtMaHang.getText(), this.txtTenHang.getText(), 
+                                Integer.parseInt(this.txtSoLuong.getText()),
+                                Float.parseFloat(this.txtDonGia.getText()), this.txtNguonGoc.getText(), 
+                                this.cbPhanLoai.getSelectionModel().getSelectedItem().getMaLoai(), 
+                                this.cbGiamGia.getSelectionModel().getSelectedItem().getMaGiamGia());
+        HangHoaServices hs = new HangHoaServices();
+        try {
+            hs.editHangHoa(h);
+            Utils.getBox("Sửa hàng hoá thành công", Alert.AlertType.INFORMATION).show();
+            this.loadTableData(null);
+            this.txtMaHang.setText(null);
+            this.txtTenHang.setText(null);
+            this.txtDonGia.setText(null);
+            this.txtSoLuong.setText(null);
+            this.txtNguonGoc.setText(null);
+            this.cbPhanLoai.getSelectionModel().clearSelection();
+            this.cbGiamGia.getSelectionModel().clearSelection();
+        } catch (SQLException ex) {
+            Utils.getBox("Sửa hàng hoá không thành công", Alert.AlertType.WARNING).show();
+        }
     }
 }
