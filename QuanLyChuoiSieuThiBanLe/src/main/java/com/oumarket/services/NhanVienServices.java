@@ -20,21 +20,6 @@ import java.util.List;
  * @author anhtuan
  */
 public class NhanVienServices {
-    public void editNhanVien(NhanVien n) throws SQLException {
-        try (Connection conn = JdbcUtils.getConn()) {
-            PreparedStatement stm = conn.prepareStatement("UPDATE nhanvien SET "+"TenNV=?,"+"NamSinh=?,"+"SDT=?,"+"Email=?,"+"GioiTinh=?,"+"DiaChi=? WHERE MaNV=?");
-            stm.setString(1, n.getTenNV());
-            stm.setDate(2, n.getNamSinh());
-            stm.setString(3, n.getSdt());
-            stm.setString(4, n.getEmail());
-            stm.setString(5, n.getGioiTinh());
-            stm.setString(6, n.getDiaChi());
-            stm.setString(7, n.getMaNV());
-            
-            stm.executeUpdate();
-        }
-    }
-    
     public void themNhanVien(NhanVien n) throws SQLException {
         try (Connection conn = JdbcUtils.getConn()) {
             PreparedStatement stm = conn.prepareStatement("INSERT INTO nhanvien(MaNV, TenNV, NamSinh, SDT, Email, GioiTinh, DiaChi) VALUES(?, ?, ?, ?, ?, ?, ?)");
@@ -59,21 +44,19 @@ public class NhanVienServices {
        }
     }
     
-    public List<NhanVien> getNhanViens() throws SQLException {
-        List<NhanVien> nhanviens = new ArrayList<>();
+    public void editNhanVien(NhanVien n) throws SQLException {
         try (Connection conn = JdbcUtils.getConn()) {
-            Statement stm = conn.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT * FROM nhanvien");
+            PreparedStatement stm = conn.prepareStatement("UPDATE nhanvien SET "+"TenNV=?,"+"NamSinh=?,"+"SDT=?,"+"Email=?,"+"GioiTinh=?,"+"DiaChi=? WHERE MaNV=?");
+            stm.setString(1, n.getTenNV());
+            stm.setDate(2, n.getNamSinh());
+            stm.setString(3, n.getSdt());
+            stm.setString(4, n.getEmail());
+            stm.setString(5, n.getGioiTinh());
+            stm.setString(6, n.getDiaChi());
+            stm.setString(7, n.getMaNV());
             
-            while (rs.next()) {
-                NhanVien nv = new NhanVien(rs.getString("maNV"), rs.getString("tenNV"), rs.getDate("namSinh"), 
-                                        rs.getString("sdt"), rs.getString("email"), rs.getString("gioiTinh"), 
-                                        rs.getString("diaChi"));
-                nhanviens.add(nv);
-            }
+            stm.executeUpdate();
         }
-       
-        return nhanviens; 
     }
     
     public List<NhanVien> getNhanViens(String kw) throws SQLException {

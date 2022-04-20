@@ -39,7 +39,7 @@ CREATE TABLE `chinhanh` (
 
 LOCK TABLES `chinhanh` WRITE;
 /*!40000 ALTER TABLE `chinhanh` DISABLE KEYS */;
-INSERT INTO `chinhanh` VALUES ('32ebf525-972d-4355-9ac5-e5b0caa4ca62','166A - 166B','Trần Văn Quang','10','Tân Bình','Hồ Chí Minh'),('3dc22861-4f30-480f-9fd0-ebfa076ef894','164 ','Nguyễn Văn Cừ','Bồ Đề','Long Biên','Hà Nội'),('8bf3b5f2-3297-4f72-8484-0a11c0de87f9','124 ','Phổ Quang','9','Phú Nhuận','Hồ Chí Minh'),('961f272c-3ec7-4870-9589-fe664f07bff5','560A','Nguyễn Văn Cừ','Gia Thụy','Long Biên','Hà Nội'),('bec09493-d8b7-41c5-bb6b-211daad0abcd','416 ','Phan Huy Ích','12','Gò Vấp','Hồ Chí Minh');
+INSERT INTO `chinhanh` VALUES ('32ebf525-972d-4355-9ac5-e5b0caa4ca62','166A - 166B','Trần Văn Quang','10','Tân Bình','Hồ Chí Minh'),('3dc22861-4f30-480f-9fd0-ebfa076ef894','164 ','Nguyễn Văn Cừ','Bồ Đề','Long Biên','Hà Nội'),('46a18236-db8a-4090-b1bc-02f147749539',NULL,NULL,NULL,NULL,NULL),('8bf3b5f2-3297-4f72-8484-0a11c0de87f9','124 ','Phổ Quang','9','Phú Nhuận','Hồ Chí Minh'),('961f272c-3ec7-4870-9589-fe664f07bff5','560A','Nguyễn Văn Cừ','Gia Thụy','Long Biên','Hà Nội'),('993aa9f5-08b9-4c14-aa43-2e7ab1ffd2ad',NULL,NULL,NULL,NULL,NULL),('bc42ff91-47aa-4835-9d69-a12fd70c0afc',NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `chinhanh` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -127,7 +127,7 @@ CREATE TABLE `hanghoa` (
 
 LOCK TABLES `hanghoa` WRITE;
 /*!40000 ALTER TABLE `hanghoa` DISABLE KEYS */;
-INSERT INTO `hanghoa` VALUES ('333ecbbe-d57d-4f1b-b20f-ac995d1b3be0','Kẹo trái cây Starmix gói 80g',123123,24500,'United Kingdom',3,1),('5cd6e335-ecc7-4f2f-a313-fe7b7a44172b','Bia Red Ruby lon 330ml',100,10000,'Vietnam',8,1),('be9364a4-62b6-46a3-be61-46cef5e58219','Nước tăng lực Monster Enery Ultra lon 355ml',100,29600,'Hong Kong',8,2);
+INSERT INTO `hanghoa` VALUES ('333ecbbe-d57d-4f1b-b20f-ac995d1b3be0','Kẹo trái cây Starmix gói 80g',12314,24500,'United Kingdom',3,1),('5cd6e335-ecc7-4f2f-a313-fe7b7a44172b','Bia Red Ruby lon 330ml',100,10000,'Vietnam',8,1),('be9364a4-62b6-46a3-be61-46cef5e58219','Nước tăng lực Monster Enery Ultra lon 355ml',100,29600,'Hong Kong',8,2);
 /*!40000 ALTER TABLE `hanghoa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -172,7 +172,7 @@ CREATE TABLE `khachhang` (
   `TenKH` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `SDT` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `DiaChi` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `NamSinh` varchar(45) DEFAULT NULL,
+  `NamSinh` date DEFAULT NULL,
   `Email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`MaKH`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -184,6 +184,7 @@ CREATE TABLE `khachhang` (
 
 LOCK TABLES `khachhang` WRITE;
 /*!40000 ALTER TABLE `khachhang` DISABLE KEYS */;
+INSERT INTO `khachhang` VALUES ('1206ab50-ff0d-4f73-a993-f25abee74bda','Nguyen Van A','0564243269','123 ','1996-06-03','123'),('196ae587-b058-4aae-9743-13efd89bb7c7','Nguyen Van C','0909870685','456','2000-04-07','123'),('1a87eeef-0e9a-4f48-a082-9a2950a05453','Tran Thi Kieu Tho','0387653488','789','1995-10-09','123'),('1fb7fd43-7362-4cc6-b8dd-a85d5cd0c905','Huynh Tuan Tu','0394689289','12','1997-06-09','123123'),('27a01cbb-1385-48e5-a354-8046e70d2e97','Phan Thi Nha Tran','0359468139','41','2004-09-06','123'),('2ee3358e-703a-4ec2-a737-c77a468a022a','Le Duy Cuong','0382304927','415','1993-04-25','123'),('372c7092-0c50-4f1a-b9e9-827093a522c1','Phan Thi Kieu Suong','0378109060','651','1989-03-05','123'),('40691c3a-21a3-4fe0-be5c-959ea265bfad','Vu Van Duc','0348094068','61','1999-12-20','123'),('54a08aa5-060e-4be3-8df9-f432f40be46d','La Thi Kieu Thu','0904606738','76','1990-09-10','123'),('59e5b850-fb61-4ea4-aba7-b7a6ece4ebd9','Nguyen Thi Lan','0904603738','46','1990-09-10','123');
 /*!40000 ALTER TABLE `khachhang` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -249,4 +250,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-20 18:03:15
+-- Dump completed on 2022-04-20 22:31:30

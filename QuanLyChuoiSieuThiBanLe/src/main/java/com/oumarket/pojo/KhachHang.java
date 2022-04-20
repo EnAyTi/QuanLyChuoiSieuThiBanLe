@@ -4,6 +4,8 @@
  */
 package com.oumarket.pojo;
 
+import java.sql.Date;
+
 /**
  *
  * @author anhtuan
@@ -11,18 +13,20 @@ package com.oumarket.pojo;
 public class KhachHang {
     private String maKH;
     private String tenKH;
-    private String diaChi;
     private String sdt;
+    private String diaChi;
+    private Date namSinh;
     private String email;
 
     public KhachHang() {
     }
 
-    public KhachHang(String maKH, String tenKH, String diaChi, String sdt, String email) {
+    public KhachHang(String maKH, String tenKH, String sdt, String diaChi, Date namSinh, String email) {
         this.maKH = maKH;
         this.tenKH = tenKH;
-        this.diaChi = diaChi;
         this.sdt = sdt;
+        this.diaChi = diaChi;
+        this.namSinh = namSinh;
         this.email = email;
     }
     
@@ -57,6 +61,20 @@ public class KhachHang {
     }
 
     /**
+     * @return the sdt
+     */
+    public String getSdt() {
+        return sdt;
+    }
+
+    /**
+     * @param sdt the sdt to set
+     */
+    public void setSdt(String sdt) {
+        this.sdt = sdt;
+    }
+
+    /**
      * @return the diaChi
      */
     public String getDiaChi() {
@@ -71,17 +89,17 @@ public class KhachHang {
     }
 
     /**
-     * @return the sdt
+     * @return the namSinh
      */
-    public String getSdt() {
-        return sdt;
+    public Date getNamSinh() {
+        return namSinh;
     }
 
     /**
-     * @param sdt the sdt to set
+     * @param namSinh the namSinh to set
      */
-    public void setSdt(String sdt) {
-        this.sdt = sdt;
+    public void setNamSinh(Date namSinh) {
+        this.namSinh = namSinh;
     }
 
     /**
@@ -97,4 +115,6 @@ public class KhachHang {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    
 }

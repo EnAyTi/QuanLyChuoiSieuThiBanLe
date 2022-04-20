@@ -19,21 +19,6 @@ import java.util.List;
  * @author anhtuan
  */
 public class HangHoaServices {
-    public void editHangHoa(HangHoa h) throws SQLException {
-        try (Connection conn = JdbcUtils.getConn()) {
-            PreparedStatement stm = conn.prepareStatement("UPDATE hanghoa SET "+"TenHang=?,"+"SoLuong=?,"+"DonGia=?,"+"NguonGoc=?,"+"MaLoai=?,"+"MaGiamGia=? WHERE MaHang=?");
-            stm.setString(1, h.getTenHang());
-            stm.setInt(2, h.getSoLuong());
-            stm.setFloat(3, h.getDonGia());
-            stm.setString(4, h.getNguonGoc());
-            stm.setInt(5, h.getMaLoai());
-            stm.setInt(6, h.getMaGiamGia());
-            stm.setString(7, h.getMaHang());
-            
-            stm.executeUpdate();
-        }
-    }
-    
     public void themHangHoa(HangHoa h) throws SQLException {
         try (Connection conn = JdbcUtils.getConn()) {
             PreparedStatement stm = conn.prepareStatement("INSERT INTO hanghoa(MaHang, TenHang, SoLuong, DonGia, NguonGoc, MaLoai, MaGiamGia) VALUES(?, ?, ?, ?, ?, ?, ?)");
@@ -44,6 +29,30 @@ public class HangHoaServices {
             stm.setString(5, h.getNguonGoc());
             stm.setInt(6, h.getMaLoai());
             stm.setInt(7, h.getMaGiamGia());
+            
+            stm.executeUpdate();
+        }
+    }
+    
+    public boolean deleteHangHoa(String maHang) throws SQLException {
+       try (Connection conn = JdbcUtils.getConn()) {
+           PreparedStatement stm = conn.prepareStatement("DELETE FROM hanghoa WHERE MaHang=?");
+           stm.setString(1, maHang);
+           
+           return stm.executeUpdate() > 0;
+       }
+    }
+    
+    public void editHangHoa(HangHoa h) throws SQLException {
+        try (Connection conn = JdbcUtils.getConn()) {
+            PreparedStatement stm = conn.prepareStatement("UPDATE hanghoa SET "+"TenHang=?,"+"SoLuong=?,"+"DonGia=?,"+"NguonGoc=?,"+"MaLoai=?,"+"MaGiamGia=? WHERE MaHang=?");
+            stm.setString(1, h.getTenHang());
+            stm.setInt(2, h.getSoLuong());
+            stm.setFloat(3, h.getDonGia());
+            stm.setString(4, h.getNguonGoc());
+            stm.setInt(5, h.getMaLoai());
+            stm.setInt(6, h.getMaGiamGia());
+            stm.setString(7, h.getMaHang());
             
             stm.executeUpdate();
         }
@@ -76,29 +85,30 @@ public class HangHoaServices {
        }
     }
     
-    public List<HangHoa> getHangHoas() throws SQLException {
-        List<HangHoa> hanghoas = new ArrayList<>();
-        try (Connection conn = JdbcUtils.getConn()) {
-            Statement stm = conn.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT * FROM hanghoa");
-            
-            while (rs.next()) {
-                HangHoa nv = new HangHoa(rs.getString("maHang"), rs.getString("tenHang"), rs.getInt("soLuong"), 
-                                        rs.getFloat("donGia"), rs.getString("nguonGoc"), rs.getInt("maLoai"), 
-                                        rs.getInt("maGiamGia"));
-                hanghoas.add(nv);
-            }
-        }
-       
-        return hanghoas; 
-    }
-    
-    public boolean deleteHangHoa(String maHang) throws SQLException {
+    public List<HangHoa> getHangHoasById(String kw) throws SQLException {
        try (Connection conn = JdbcUtils.getConn()) {
-           PreparedStatement stm = conn.prepareStatement("DELETE FROM hanghoa WHERE MaHang=?");
-           stm.setString(1, maHang);
+           PreparedStatement stm = conn.prepareStatement("SELECT * FROM hanghoa WHERE MaHang like concat(?, '%', '%', '%', '%', '%', '%')");
            
-           return stm.executeUpdate() > 0;
+           if (kw == null)
+               kw = "";
+           stm.setString(1, kw);
+           
+           ResultSet rs = stm.executeQuery();
+           
+           List<HangHoa> hanghoas = new ArrayList<>();
+           
+           while (rs.next()) {
+               String maHang = rs.getString("maHang");
+               String tenHang = rs.getString("tenHang");
+               int soLuong = rs.getInt("soLuong");
+               float donGia = rs.getFloat("donGia");
+               String nguonGoc = rs.getString("nguonGoc");
+               int maLoai = rs.getInt("maLoai");
+               int maGiamGia = rs.getInt("maGiamGia");
+               hanghoas.add(new HangHoa(maHang, tenHang, soLuong, donGia, nguonGoc, maLoai, maGiamGia));
+           }
+           
+           return hanghoas;
        }
     }
     
