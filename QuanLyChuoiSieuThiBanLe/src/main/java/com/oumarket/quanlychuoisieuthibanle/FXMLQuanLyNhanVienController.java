@@ -144,7 +144,7 @@ public class FXMLQuanLyNhanVienController implements Initializable {
         });
         
         this.tbNhanVien.getColumns().addAll(colMaNV, colTenNV, colNamSinh, 
-                                        colSDT, colEmail, colGioiTinh, colDiaChi, colDel, colEdit);
+                                            colSDT, colEmail, colGioiTinh, colDiaChi, colDel, colEdit);
     }
     
     public void refreshTable(ActionEvent event) {
@@ -166,9 +166,16 @@ public class FXMLQuanLyNhanVienController implements Initializable {
         try {
             nv.themNhanVien(n);
             Utils.getBox("Thêm nhân viên thành công", Alert.AlertType.INFORMATION).show();
+            this.loadTableData(null);
+            this.txtHoTen.setText(null);
+            this.dpNamSinh.setValue(null);
+            this.txtSDT.setText(null);
+            this.txtEmail.setText(null);
+            this.txtDiaChi.setText(null);
         } catch (SQLException ex) {
             Utils.getBox("Thêm nhân viên không thành công", Alert.AlertType.WARNING).show();
-        }        
-    }
+        }
+        
+   }
     
 }

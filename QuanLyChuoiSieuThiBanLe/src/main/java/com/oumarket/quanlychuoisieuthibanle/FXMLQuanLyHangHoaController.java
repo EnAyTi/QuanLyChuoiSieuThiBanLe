@@ -41,6 +41,7 @@ public class FXMLQuanLyHangHoaController implements Initializable {
     @FXML private TextField txtKeyword;
     @FXML private TableView<HangHoa> tbHangHoa;
     
+    @FXML private TextField txtMaHang;
     @FXML private ComboBox<PhanLoai> cbPhanLoai;
     @FXML private ComboBox<GiamGia> cbGiamGia;
     @FXML private TextField txtTenHang;
@@ -135,8 +136,13 @@ public class FXMLQuanLyHangHoaController implements Initializable {
                 TableCell c = (TableCell)((Button)evt.getSource()).getParent();
                 HangHoa h = (HangHoa) c.getTableRow().getItem();
                 
-                //h.getMaHang()
-            });
+                this.txtMaHang.setText(h.getMaHang());
+                this.txtTenHang.setText(h.getTenHang());
+                //this.txtDonGia;
+                //this.txtSoLuong;
+                this.txtNguonGoc.setText(h.getNguonGoc());
+                //this.cbPhanLoai.setValue();
+           });
             
             TableCell cell = new TableCell();
             cell.setGraphic(btn);
@@ -144,7 +150,7 @@ public class FXMLQuanLyHangHoaController implements Initializable {
         });
         
         this.tbHangHoa.getColumns().addAll(colMaHang, colTenHang, colSoLuong, 
-                                        colDonGia, colNguonGoc, colMaLoai, colMaGiamGia, colDel, colEdit);
+                                            colDonGia, colNguonGoc, colMaLoai, colMaGiamGia, colDel, colEdit);
     } 
     
     public void refreshTable(ActionEvent event) {
@@ -158,17 +164,28 @@ public class FXMLQuanLyHangHoaController implements Initializable {
     
     public void themHangHoaHandler(ActionEvent event) {
         HangHoa h = new HangHoa(UUID.randomUUID().toString(), this.txtTenHang.getText(), 
-                Integer.parseInt(this.txtSoLuong.getText()), 
-                Float.parseFloat(this.txtDonGia.getText()), this.txtNguonGoc.getText(), 
-                this.cbPhanLoai.getSelectionModel().getSelectedItem().getMaLoai(), 
-                this.cbGiamGia.getSelectionModel().getSelectedItem().getMaGiamGia());
+                                Integer.parseInt(this.txtSoLuong.getText()), 
+                                Float.parseFloat(this.txtDonGia.getText()), this.txtNguonGoc.getText(), 
+                                this.cbPhanLoai.getSelectionModel().getSelectedItem().getMaLoai(), 
+                                this.cbGiamGia.getSelectionModel().getSelectedItem().getMaGiamGia());
         
         HangHoaServices hs = new HangHoaServices();
         try {
             hs.themHangHoa(h);
             Utils.getBox("Thêm hàng hoá thành công", Alert.AlertType.INFORMATION).show();
+            this.loadTableData(null);
+            this.txtTenHang.setText(null);
+            this.txtSoLuong.setText(null);
+            this.txtDonGia.setText(null);
+            this.txtNguonGoc.setText(null);
+            this.cbPhanLoai.getSelectionModel().clearSelection();
+            this.cbGiamGia.getSelectionModel().clearSelection();
         } catch (SQLException ex) {
             Utils.getBox("Thêm hàng hoá không thành công", Alert.AlertType.WARNING).show();
         }
+    }
+    
+    public void editHangHoaHandler(ActionEvent event) {
+        
     }
 }

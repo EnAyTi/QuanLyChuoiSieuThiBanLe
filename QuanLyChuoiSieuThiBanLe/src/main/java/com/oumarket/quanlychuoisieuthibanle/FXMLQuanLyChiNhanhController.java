@@ -36,11 +36,13 @@ public class FXMLQuanLyChiNhanhController implements Initializable {
     @FXML private TableView<ChiNhanh> tbChiNhanh;
     @FXML private TextField txtKeyword;
     
+    @FXML private TextField txtMaChiNhanh;
     @FXML private TextField txtSoNha;
     @FXML private TextField txtDuong;
     @FXML private TextField txtPhuong;
     @FXML private TextField txtQuan;
     @FXML private TextField txtThanhPho;
+    
     /**
      * Initializes the controller class.
      */
@@ -116,25 +118,20 @@ public class FXMLQuanLyChiNhanhController implements Initializable {
                 TableCell c = (TableCell)((Button)evt.getSource()).getParent();
                 ChiNhanh cn = (ChiNhanh) c.getTableRow().getItem();
                 
-                //cn.getMaChiNhanh()
-            });
-            
+                this.txtMaChiNhanh.setText(cn.getMaChiNhanh());
+                this.txtSoNha.setText(cn.getSoNha());
+                this.txtDuong.setText(cn.getDuong());
+                this.txtPhuong.setText(cn.getPhuong());
+                this.txtQuan.setText(cn.getQuan());
+                this.txtThanhPho.setText(cn.getThanhPho());
+           });
             TableCell cell = new TableCell();
             cell.setGraphic(btn);
             return cell;
         });
         
         this.tbChiNhanh.getColumns().addAll(colMaChiNhanh, colSoNha, colDuong, 
-                                        colPhuong, colQuan, colThanhPho, colDel, colEdit);
-    }
-    
-    public void refreshTable(ActionEvent event) {
-        ChiNhanhServices nv = new ChiNhanhServices();
-        try {
-            this.tbChiNhanh.setItems(FXCollections.observableList(nv.getChiNhanhs()));
-        } catch (SQLException ex) {
-            Logger.getLogger(FXMLQuanLyChiNhanhController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                                            colPhuong, colQuan, colThanhPho, colDel, colEdit);
     }
     
     public void themChiNhanhHandler(ActionEvent event) {
@@ -146,8 +143,35 @@ public class FXMLQuanLyChiNhanhController implements Initializable {
         try {
             cs.themChiNhanh(c);
             Utils.getBox("Thêm chi nhánh thành công", Alert.AlertType.INFORMATION).show();
+            this.loadTableData(null);
+            this.txtMaChiNhanh.setText(null);
+            this.txtSoNha.setText(null);
+            this.txtDuong.setText(null);
+            this.txtPhuong.setText(null);
+            this.txtQuan.setText(null);
+            this.txtThanhPho.setText(null);
         } catch (SQLException ex) {
             Utils.getBox("Thêm chi nhánh không thành công", Alert.AlertType.WARNING).show();
+        }
+    }
+    
+    public void editChiNhanhHandler(ActionEvent event) {
+        ChiNhanh c = new ChiNhanh(this.txtMaChiNhanh.getText(), this.txtSoNha.getText(), 
+                                this.txtDuong.getText(), this.txtPhuong.getText(), 
+                                this.txtQuan.getText(), this.txtThanhPho.getText());
+        ChiNhanhServices cs = new ChiNhanhServices();
+        try {
+            cs.editChiNhanh(c);
+            Utils.getBox("Sửa chi nhánh thành công", Alert.AlertType.INFORMATION).show();
+            this.loadTableData(null);
+            this.txtMaChiNhanh.setText(null);
+            this.txtSoNha.setText(null);
+            this.txtDuong.setText(null);
+            this.txtPhuong.setText(null);
+            this.txtQuan.setText(null);
+            this.txtThanhPho.setText(null);
+        } catch (SQLException ex) {
+            Utils.getBox("Sửa chi nhánh không thành công", Alert.AlertType.WARNING).show();
         }
     }
 }

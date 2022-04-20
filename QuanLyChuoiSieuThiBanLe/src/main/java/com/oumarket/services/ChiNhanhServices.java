@@ -19,6 +19,20 @@ import java.util.List;
  * @author anhtuan
  */
 public class ChiNhanhServices {
+    public void editChiNhanh(ChiNhanh c) throws SQLException {
+        try (Connection conn = JdbcUtils.getConn()) {
+            PreparedStatement stm = conn.prepareStatement("UPDATE chinhanh SET "+"SoNha=?,"+"Duong=?,"+"Phuong=?,"+"Quan=?,"+"ThanhPho=? WHERE MaChiNhanh=?");
+            stm.setString(1, c.getSoNha());
+            stm.setString(2, c.getDuong());
+            stm.setString(3, c.getPhuong());
+            stm.setString(4, c.getQuan());
+            stm.setString(5, c.getThanhPho());
+            stm.setString(6, c.getMaChiNhanh());
+            
+            stm.executeUpdate();
+        }
+    }
+    
     public void themChiNhanh(ChiNhanh c) throws SQLException {
         try (Connection conn = JdbcUtils.getConn()) {
             PreparedStatement stm = conn.prepareStatement("INSERT INTO chinhanh(MaChiNhanh, SoNha, Duong, Phuong, Quan, ThanhPho) VALUES(?, ?, ?, ?, ?, ?)");
@@ -40,23 +54,6 @@ public class ChiNhanhServices {
            
            return stm.executeUpdate() > 0;
        }
-    }
-    
-    public List<ChiNhanh> getChiNhanhs() throws SQLException {
-        List<ChiNhanh> chinhanhs = new ArrayList<>();
-        try (Connection conn = JdbcUtils.getConn()) {
-            Statement stm = conn.createStatement();
-            ResultSet rs = stm.executeQuery("SELECT * FROM chinhanh");
-            
-            while (rs.next()) {
-                ChiNhanh cn = new ChiNhanh(rs.getString("maChiNhanh"), rs.getString("soNha"), 
-                                        rs.getString("duong"), rs.getString("phuong"), rs.getString("quan"), 
-                                        rs.getString("thanhPho"));
-                chinhanhs.add(cn);
-            }
-        }
-       
-        return chinhanhs; 
     }
     
     public List<ChiNhanh> getChiNhanhs(String kw) throws SQLException {
