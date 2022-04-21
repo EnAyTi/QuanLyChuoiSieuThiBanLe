@@ -33,7 +33,7 @@ import javafx.stage.Stage;
  */
 public class FXMLOUMarketController implements Initializable {
     private static final HangHoaServices s = new HangHoaServices();
-    
+  
     @FXML private TableView<HangHoa> tbHangHoa;
     @FXML private TextField txtKeyword;
     
@@ -43,7 +43,6 @@ public class FXMLOUMarketController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        
         this.loadTableView();
         this.loadTableData(null);
         
@@ -56,7 +55,7 @@ public class FXMLOUMarketController implements Initializable {
         try {
             this.tbHangHoa.setItems(FXCollections.observableList(s.getHangHoasById(kw)));
         } catch (SQLException ex) {
-            Logger.getLogger(FXMLQuanLyHangHoaController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FXMLOUMarketController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -80,7 +79,6 @@ public class FXMLOUMarketController implements Initializable {
             btn.setOnAction((evt) -> {
                 TableCell c = (TableCell)((Button)evt.getSource()).getParent();
                 HangHoa h = (HangHoa) c.getTableRow().getItem();
-                
                 
             });
             

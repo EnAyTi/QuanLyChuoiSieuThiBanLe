@@ -5,7 +5,6 @@
 package com.oumarket.pojo;
 
 import java.sql.Date;
-
 /**
  *
  * @author anhtuan

@@ -53,7 +53,7 @@ public class PhanLoaiTestSuite {
     }
     
     @Test
-    public void testCategoryNameNotNull() {
+    public void testPhanLoaiNameNotNull() {
         try {
             List<PhanLoai> phanloais = s.getPhanLoai();
             
@@ -64,7 +64,7 @@ public class PhanLoaiTestSuite {
     }
     
     @Test
-    public void testCategoryNameUnique() throws SQLException {
+    public void testPhanLoaiNameUnique() throws SQLException {
         List<PhanLoai> phanloais = s.getPhanLoai();
         
         List<String> tens = phanloais.stream().flatMap(c -> Stream.of(c.getTenLoai())).collect(Collectors.toList());
