@@ -4,8 +4,8 @@
  */
 package com.oumarket.tester01;
 
-import com.oumarket.pojo.HangHoa;
-import com.oumarket.services.HangHoaServices;
+import com.oumarket.pojo.ChiNhanh;
+import com.oumarket.services.ChiNhanhServices;
 import com.oumarket.utils.JdbcUtils;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -22,19 +22,19 @@ import org.junit.jupiter.api.Test;
  *
  * @author anhtuan
  */
-public class HangHoaTestSuite {
+public class ChiNhanhTestSuite {
     private static Connection conn;
-    private static HangHoaServices h;
+    private static ChiNhanhServices cns;
     
     @BeforeAll
     public static void beforeAll() {
         try {
             conn = JdbcUtils.getConn();
         } catch (SQLException ex) {
-            Logger.getLogger(HangHoaTestSuite.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ChiNhanhTestSuite.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        h = new HangHoaServices();
+        cns = new ChiNhanhServices();
     }
     
     @AfterAll
@@ -43,76 +43,76 @@ public class HangHoaTestSuite {
             try {
                 conn.close();
             } catch (SQLException ex) {
-                Logger.getLogger(HangHoaTestSuite.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ChiNhanhTestSuite.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
     
     @Test
     public void testSearchSuccessful() throws SQLException {
         String kw = "you";
-        List<HangHoa> hanghoas = h.getHangHoas(kw);
+        List<ChiNhanh> chinhanhs = cns.getChiNhanhs(kw);
         
-        for (HangHoa q: hanghoas)
-            Assertions.assertTrue(q.getTenHang().toLowerCase().contains(kw.toLowerCase()));
+        for (ChiNhanh cn: chinhanhs)
+            Assertions.assertTrue(cn.getThanhPho().toLowerCase().contains(kw.toLowerCase()));
     }
     
     @Test
     public void testSearchInvalid() throws SQLException {
         String kw = "youuuuuuuuuuuuuuuuuuuuuuuuuuuu";
-        List<HangHoa> hanghoas = h.getHangHoas(kw);
+        List<ChiNhanh> chinhanhs = cns.getChiNhanhs(kw);
         
-        Assertions.assertEquals(hanghoas.size(), 0);
+        Assertions.assertEquals(chinhanhs.size(), 0);
     }
     
     @Test
     public void testSearchUnscure() throws SQLException {
         String kw = "1 OR 1=1";
-        List<HangHoa> hanghoas = h.getHangHoas(kw);
+        List<ChiNhanh> chinhanhs = cns.getChiNhanhs(kw);
         
-        Assertions.assertEquals(hanghoas.size(), 0);
+        Assertions.assertEquals(chinhanhs.size(), 0);
     }
     
     @Test
     public void testDeleteFail() throws SQLException {
         String id = "499999670eb24-3985-40f9-bab6-a86de52a5c34";
-        Assertions.assertFalse(h.deleteHangHoa(id));
+        Assertions.assertFalse(cns.deleteChiNhanh(id));
     }
     
     @Test
     public void testDeleteSuccess() throws SQLException {
-        String id = "5bfa650d-1688-4b28-bbcb-648345c1b31b";
-        Assertions.assertTrue(h.deleteHangHoa(id));
-        Assertions.assertNull(h.getHangHoaById(id));
+        String id = "4ef65997-dffd-49a6-854e-c3d675d25828";
+        Assertions.assertTrue(cns.deleteChiNhanh(id));
+        Assertions.assertNull(cns.getChiNhanhById(id));
     }
     
     @Test
     public void testAddSuccess() throws SQLException {
-        HangHoa q = new HangHoa(UUID.randomUUID().toString(), "test", 4, 25400, "test", 4, 1);
+        ChiNhanh q = new ChiNhanh(UUID.randomUUID().toString(), "123", "test", "test", "test", "test");
         
-        Assertions.assertTrue(h.themHangHoa(q));
+        Assertions.assertTrue(cns.themChiNhanh(q));
         
-        HangHoa hhs = h.getHangHoaById(q.getMaHang());
-        Assertions.assertEquals(q.getTenHang(), hhs.getTenHang());
-        Assertions.assertEquals(q.getMaLoai(), hhs.getMaLoai());
+        ChiNhanh hhs = cns.getChiNhanhById(q.getMaChiNhanh());
+        Assertions.assertEquals(q.getDuong(), hhs.getDuong());
+        Assertions.assertEquals(q.getThanhPho(), hhs.getThanhPho());
     }
     
     @Test
     public void testEditSuccess() throws SQLException {
-        String id = "79b6973c-3dd8-4858-b1df-26c9f130bd02";
-        HangHoa q = new HangHoa(id, "test", 4, 25400, "test3", 4, 1);
+        String id = "dc9ba7bd-a313-4855-aae7-755f75858e74";
+        ChiNhanh q = new ChiNhanh(id, "123", "test", "test2", "test", "test");
         
-        Assertions.assertTrue(h.editHangHoa(q));
+        Assertions.assertTrue(cns.editChiNhanh(q));
         
-        HangHoa hhs = h.getHangHoaById(q.getMaHang());
-        Assertions.assertEquals(q.getTenHang(), hhs.getTenHang());
-        Assertions.assertEquals(q.getMaLoai(), hhs.getMaLoai());
+        ChiNhanh hhs = cns.getChiNhanhById(q.getMaChiNhanh());
+        Assertions.assertEquals(q.getDuong(), hhs.getDuong());
+        Assertions.assertEquals(q.getThanhPho(), hhs.getThanhPho());
     }
     
     @Test
     public void testEditFail() throws SQLException {
         String id = "79b6973c-3dd8-4858-b1df-26c9f130bd02";
-        HangHoa q = new HangHoa(id, "test", 4, 25400, "test3", 4, 1);
+        ChiNhanh q = new ChiNhanh(id, "123", "test", "test2", "test", "test");
         
-        Assertions.assertFalse(h.editHangHoa(q));
+        Assertions.assertFalse(cns.editChiNhanh(q));
     }
 }

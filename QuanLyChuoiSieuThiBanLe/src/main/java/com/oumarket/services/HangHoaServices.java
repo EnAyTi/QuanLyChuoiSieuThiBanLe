@@ -10,7 +10,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +18,7 @@ import java.util.List;
  * @author anhtuan
  */
 public class HangHoaServices {
-    public void themHangHoa(HangHoa h) throws SQLException {
+    public boolean themHangHoa(HangHoa h) throws SQLException {
         try (Connection conn = JdbcUtils.getConn()) {
             PreparedStatement stm = conn.prepareStatement("INSERT INTO hanghoa(MaHang, TenHang, SoLuong, DonGia, NguonGoc, MaLoai, MaGiamGia) VALUES(?, ?, ?, ?, ?, ?, ?)");
             stm.setString(1, h.getMaHang());
@@ -30,7 +29,7 @@ public class HangHoaServices {
             stm.setInt(6, h.getMaLoai());
             stm.setInt(7, h.getMaGiamGia());
             
-            stm.executeUpdate();
+            return stm.executeUpdate() > 0;
         }
     }
     
@@ -43,7 +42,7 @@ public class HangHoaServices {
        }
     }
     
-    public void editHangHoa(HangHoa h) throws SQLException {
+    public boolean editHangHoa(HangHoa h) throws SQLException {
         try (Connection conn = JdbcUtils.getConn()) {
             PreparedStatement stm = conn.prepareStatement("UPDATE hanghoa SET "+"TenHang=?,"+"SoLuong=?,"+"DonGia=?,"+"NguonGoc=?,"+"MaLoai=?,"+"MaGiamGia=? WHERE MaHang=?");
             stm.setString(1, h.getTenHang());
@@ -54,7 +53,7 @@ public class HangHoaServices {
             stm.setInt(6, h.getMaGiamGia());
             stm.setString(7, h.getMaHang());
             
-            stm.executeUpdate();
+            return stm.executeUpdate() > 0;
         }
     }
     

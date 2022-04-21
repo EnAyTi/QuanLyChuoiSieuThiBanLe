@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
@@ -23,10 +24,13 @@
                         <TableView fx:id="tbHangHoa" layoutX="4.0" layoutY="53.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="444.0" prefWidth="720.0" />
                         <TextField fx:id="txtKeyword" layoutX="104.0" layoutY="14.0" prefHeight="26.0" prefWidth="620.0" />
                         <Label layoutX="4.0" layoutY="18.0" prefHeight="18.0" prefWidth="100.0" text="Mã hàng:" />
-                        <TableView layoutX="751.0" layoutY="53.0" prefHeight="444.0" prefWidth="360.0" />
+                        <TableView layoutX="751.0" layoutY="257.0" prefHeight="240.0" prefWidth="360.0" />
                         <Button layoutX="751.0" layoutY="14.0" mnemonicParsing="false" onAction="#traCuuKhachHangHandler" prefHeight="26.0" prefWidth="130.0" text="Tra cứu khách hàng" />
                         <Separator layoutX="733.0" layoutY="14.0" orientation="VERTICAL" prefHeight="494.0" prefWidth="10.0" />
                         <Separator layoutX="4.0" layoutY="504.0" prefHeight="10.0" prefWidth="1250.0" />
+                        <ComboBox layoutX="751.0" layoutY="53.0" prefHeight="23.0" prefWidth="130.0" />
+                        <TextField layoutX="892.0" layoutY="15.0" prefHeight="23.0" prefWidth="188.0" promptText="Nhập mã khách hàng" />
+                        <Button layoutX="751.0" layoutY="99.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="130.0" text="add to cart" />
                      </children>
                   </AnchorPane>
                </content></Tab>

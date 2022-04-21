@@ -169,7 +169,6 @@ public class FXMLQuanLyNhanVienController implements Initializable {
     }
     
     public void themNhanVienHandler(ActionEvent event) {
-        
         NhanVien n = new NhanVien(UUID.randomUUID().toString(), this.txtHoTen.getText(), 
                                 java.sql.Date.valueOf(this.dpNamSinh.getValue()), this.txtSDT.getText(), 
                                 this.txtEmail.getText(), rdoLabel, this.txtDiaChi.getText());
@@ -189,7 +188,6 @@ public class FXMLQuanLyNhanVienController implements Initializable {
         } catch (SQLException ex) {
             Utils.getBox("Thêm nhân viên không thành công", Alert.AlertType.WARNING).show();
         }
-        
    }
     
     public void editNhanVienHandler(ActionEvent event) {

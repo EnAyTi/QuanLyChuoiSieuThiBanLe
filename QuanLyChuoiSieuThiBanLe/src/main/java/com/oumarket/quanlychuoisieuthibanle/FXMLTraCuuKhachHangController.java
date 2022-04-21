@@ -18,6 +18,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 
 /**
  * FXML Controller class
@@ -53,8 +54,11 @@ public class FXMLTraCuuKhachHangController implements Initializable {
     }
     
     private void loadTableView() {
+        this.tbKhachHang.setEditable(true);
+        
         TableColumn colMaKH = new TableColumn("Mã khách hàng");
         colMaKH.setCellValueFactory(new PropertyValueFactory("maKH"));
+        colMaKH.setCellFactory(TextFieldTableCell.forTableColumn());
         
         TableColumn colTenKH = new TableColumn("Tên khách hàng");
         colTenKH.setCellValueFactory(new PropertyValueFactory("tenKH"));

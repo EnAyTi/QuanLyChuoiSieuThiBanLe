@@ -39,7 +39,7 @@ CREATE TABLE `chinhanh` (
 
 LOCK TABLES `chinhanh` WRITE;
 /*!40000 ALTER TABLE `chinhanh` DISABLE KEYS */;
-INSERT INTO `chinhanh` VALUES ('32ebf525-972d-4355-9ac5-e5b0caa4ca62','166A - 166B','Trần Văn Quang','10','Tân Bình','Hồ Chí Minh'),('3dc22861-4f30-480f-9fd0-ebfa076ef894','164 ','Nguyễn Văn Cừ','Bồ Đề','Long Biên','Hà Nội'),('46a18236-db8a-4090-b1bc-02f147749539',NULL,NULL,NULL,NULL,NULL),('8bf3b5f2-3297-4f72-8484-0a11c0de87f9','124 ','Phổ Quang','9','Phú Nhuận','Hồ Chí Minh'),('961f272c-3ec7-4870-9589-fe664f07bff5','560A','Nguyễn Văn Cừ','Gia Thụy','Long Biên','Hà Nội'),('993aa9f5-08b9-4c14-aa43-2e7ab1ffd2ad',NULL,NULL,NULL,NULL,NULL),('bc42ff91-47aa-4835-9d69-a12fd70c0afc',NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `chinhanh` VALUES ('32ebf525-972d-4355-9ac5-e5b0caa4ca62','166A - 166B','Trần Văn Quang','10','Tân Bình','Hồ Chí Minh'),('3dc22861-4f30-480f-9fd0-ebfa076ef894','164 ','Nguyễn Văn Cừ','Bồ Đề','Long Biên','Hà Nội'),('8bf3b5f2-3297-4f72-8484-0a11c0de87f9','124 ','Phổ Quang','9','Phú Nhuận','Hồ Chí Minh'),('961f272c-3ec7-4870-9589-fe664f07bff5','560A','Nguyễn Văn Cừ','Gia Thụy','Long Biên','Hà Nội');
 /*!40000 ALTER TABLE `chinhanh` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -54,7 +54,6 @@ CREATE TABLE `chitiethoadon` (
   `MaHoaDon` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `MaHang` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `SoLuong` int DEFAULT NULL,
-  `DonGia` int DEFAULT NULL,
   `ThanhTien` int DEFAULT NULL,
   PRIMARY KEY (`MaHoaDon`,`MaHang`),
   KEY `FK_chitiethoadon_hanghoa1` (`MaHang`),
@@ -142,7 +141,7 @@ CREATE TABLE `hoadon` (
   `MaHoaDon` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `MaNV` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `MaKH` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `NgayHD` datetime(6) DEFAULT NULL,
+  `NgayHD` date DEFAULT NULL,
   PRIMARY KEY (`MaHoaDon`),
   KEY `FK_hoadon_khachhang` (`MaKH`),
   KEY `FK_hoadon_nhanvien` (`MaNV`),
@@ -213,7 +212,7 @@ CREATE TABLE `nhanvien` (
 
 LOCK TABLES `nhanvien` WRITE;
 /*!40000 ALTER TABLE `nhanvien` DISABLE KEYS */;
-INSERT INTO `nhanvien` VALUES ('3cd1480f-f4ab-4660-9166-c2f819c0ee66','12313','2001-02-13','0382306027','test@gmail.com','Nam','51 nguyen xuan linh phuong 4 phu nhuan'),('5a82fefa-d378-4609-b074-758aee6effb9','huynh chi tuan','2001-02-10','0382406027','test2@gmail.com','Nữ','51 nguyen linh cung phuong 4 phu nhuan'),('da4e1a1b-e335-4d68-bddc-654749833230','nguyen anh tuan','2001-02-02','0382305027','test@gmail.com','Nam','123 nguyen xuan linh phuong 4 phu nhuan');
+INSERT INTO `nhanvien` VALUES ('5a82fefa-d378-4609-b074-758aee6effb9','huynh chi tuan','2001-02-10','0382406027','test2@gmail.com','Nữ','51 nguyen linh cung phuong 4 phu nhuan'),('da4e1a1b-e335-4d68-bddc-654749833230','nguyen anh tuan','2001-02-02','0382305027','test@gmail.com','Nam','123 nguyen xuan linh phuong 4 phu nhuan');
 /*!40000 ALTER TABLE `nhanvien` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -250,4 +249,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-20 22:31:30
+-- Dump completed on 2022-04-21 21:23:46

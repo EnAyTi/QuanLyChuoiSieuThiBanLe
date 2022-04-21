@@ -19,7 +19,7 @@ import java.util.List;
  * @author anhtuan
  */
 public class ChiNhanhServices {
-    public void themChiNhanh(ChiNhanh c) throws SQLException {
+    public boolean themChiNhanh(ChiNhanh c) throws SQLException {
         try (Connection conn = JdbcUtils.getConn()) {
             PreparedStatement stm = conn.prepareStatement("INSERT INTO chinhanh(MaChiNhanh, SoNha, Duong, Phuong, Quan, ThanhPho) VALUES(?, ?, ?, ?, ?, ?)");
             stm.setString(1, c.getMaChiNhanh());
@@ -29,7 +29,7 @@ public class ChiNhanhServices {
             stm.setString(5, c.getQuan());
             stm.setString(6, c.getThanhPho());
             
-            stm.executeUpdate();
+            return stm.executeUpdate() > 0;
         }
     }
     
@@ -42,7 +42,7 @@ public class ChiNhanhServices {
        }
     }
     
-    public void editChiNhanh(ChiNhanh c) throws SQLException {
+    public boolean editChiNhanh(ChiNhanh c) throws SQLException {
         try (Connection conn = JdbcUtils.getConn()) {
             PreparedStatement stm = conn.prepareStatement("UPDATE chinhanh SET "+"SoNha=?,"+"Duong=?,"+"Phuong=?,"+"Quan=?,"+"ThanhPho=? WHERE MaChiNhanh=?");
             stm.setString(1, c.getSoNha());
@@ -52,7 +52,7 @@ public class ChiNhanhServices {
             stm.setString(5, c.getThanhPho());
             stm.setString(6, c.getMaChiNhanh());
             
-            stm.executeUpdate();
+            return stm.executeUpdate() > 0;
         }
     }
     
@@ -80,5 +80,27 @@ public class ChiNhanhServices {
            }
            return chinhanhs;
         }
+    }
+    
+    public ChiNhanh getChiNhanhById(String maChiNhanh) throws SQLException {
+       try (Connection conn = JdbcUtils.getConn()) {
+           PreparedStatement stm = conn.prepareStatement("SELECT * FROM chinhanh WHERE MaChiNhanh=?");
+           stm.setString(1, maChiNhanh);
+           
+           ResultSet rs = stm.executeQuery();
+           
+           ChiNhanh h = null;
+           if (rs.next()) {
+               h = new ChiNhanh();
+               h.setMaChiNhanh(rs.getString("maChiNhanh"));
+               h.setSoNha(rs.getString("soNha"));
+               h.setDuong(rs.getString("duong"));
+               h.setPhuong(rs.getString("phuong"));
+               h.setQuan(rs.getString("quan"));
+               h.setThanhPho(rs.getString("thanhPho"));
+           }
+           
+           return h;
+       }
     }
 }

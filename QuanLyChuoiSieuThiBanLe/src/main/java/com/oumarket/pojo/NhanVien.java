@@ -32,7 +32,10 @@ public class NhanVien {
         this.diaChi = diaChi;
     }
 
-    
+    @Override
+    public String toString() {
+        return this.tenNV;
+    }
     
     /**
      * @return the maNV
