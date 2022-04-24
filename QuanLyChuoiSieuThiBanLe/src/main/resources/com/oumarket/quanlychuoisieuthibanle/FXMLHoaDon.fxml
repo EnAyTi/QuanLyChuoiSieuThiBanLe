@@ -14,6 +14,19 @@
         <URL value="@/com/oumarket/styles/style.css" />
     </stylesheets>
    <children>
+      <ComboBox fx:id="cbChiNhanh" layoutX="132.0" layoutY="46.0" prefHeight="26.0" prefWidth="186.0" />
+      <ComboBox fx:id="cbNhanVien" layoutX="131.0" layoutY="83.0" prefHeight="26.0" prefWidth="186.0" />
+      <Button layoutX="187.0" layoutY="120.0" mnemonicParsing="false" onAction="#traCuuKhachHangHandler" prefHeight="26.0" prefWidth="130.0" text="Tra cứu khách hàng" />
+      <TextField layoutX="132.0" layoutY="157.0" prefHeight="26.0" prefWidth="185.0">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtTienKhachDua" layoutX="126.0" layoutY="228.0" prefHeight="26.0" prefWidth="185.0">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </TextField>
       <Label layoutX="14.0" layoutY="14.0" prefHeight="22.0" prefWidth="170.0" text="Thông Tin Thanh Toán">
          <font>
             <Font name="System Bold" size="15.0" />
@@ -21,28 +34,15 @@
       </Label>
       <Label layoutX="26.0" layoutY="232.0" prefHeight="18.0" prefWidth="100.0" text="Tiền khách đưa:" />
       <Label layoutX="27.0" layoutY="273.0" prefHeight="18.0" prefWidth="100.0" text="Tiền trả lại:" />
-      <TextField layoutX="126.0" layoutY="228.0" prefHeight="26.0" prefWidth="185.0">
-         <font>
-            <Font size="11.0" />
-         </font>
-      </TextField>
-      <Button layoutX="217.0" layoutY="319.0" mnemonicParsing="false" onAction="#quayLai" prefHeight="26.0" prefWidth="100.0" text="Quay lại" />
       <Separator layoutX="14.0" layoutY="33.0" prefHeight="6.0" prefWidth="322.0" />
       <Separator layoutX="14.0" layoutY="303.0" prefHeight="6.0" prefWidth="322.0" />
       <Label layoutX="26.0" layoutY="194.0" prefHeight="18.0" prefWidth="100.0" text="Tổng thanh toán:" />
-      <Label layoutX="225.0" layoutY="194.0" prefHeight="18.0" prefWidth="100.0" text="dasd" />
-      <Label layoutX="225.0" layoutY="273.0" prefHeight="18.0" prefWidth="100.0" text="asdasd" />
+      <Label fx:id="lbTongTien" layoutX="225.0" layoutY="194.0" prefHeight="18.0" prefWidth="100.0" />
+      <Label fx:id="lbTienThua" layoutX="225.0" layoutY="273.0" prefHeight="18.0" prefWidth="100.0" />
       <Button layoutX="32.0" layoutY="319.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" text="Lưu hoá đơn" />
+      <Button layoutX="217.0" layoutY="319.0" mnemonicParsing="false" onAction="#quayLai" prefHeight="26.0" prefWidth="100.0" text="Quay lại" />
       <Label layoutX="26.0" layoutY="50.0" prefHeight="18.0" prefWidth="100.0" text="Chi nhánh:" />
       <Label layoutX="26.0" layoutY="87.0" prefHeight="18.0" prefWidth="100.0" text="Nhân viên:" />
       <Label layoutX="27.0" layoutY="161.0" prefHeight="18.0" prefWidth="100.0" text="Khách hàng:" />
-      <ComboBox fx:id="cbChiNhanh" layoutX="132.0" layoutY="46.0" prefHeight="26.0" prefWidth="186.0" />
-      <ComboBox fx:id="cbNhanVien" layoutX="131.0" layoutY="83.0" prefHeight="26.0" prefWidth="186.0" />
-      <TextField layoutX="132.0" layoutY="157.0" prefHeight="26.0" prefWidth="185.0">
-         <font>
-            <Font size="11.0" />
-         </font>
-      </TextField>
-      <Button layoutX="187.0" layoutY="120.0" mnemonicParsing="false" onAction="#traCuuKhachHangHandler" prefHeight="26.0" prefWidth="130.0" text="Tra cứu khách hàng" />
    </children>
 </AnchorPane>
