@@ -9,6 +9,7 @@ import com.oumarket.services.HangHoaServices;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,6 +19,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
@@ -135,14 +138,17 @@ public class FXMLOUMarketController implements Initializable {
         this.loadTableData(null);
     }
     
-    public void traCuuKhachHangHandler(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("FXMLTraCuuKhachHang.fxml"));
+    public void hoaDonHandler(ActionEvent event) throws IOException {
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("FXMLHoaDon.fxml"));
+        Parent hangHoaViewParent = loader.load();
+        Scene scene = new Scene(hangHoaViewParent);
         
-        Scene scene = new Scene(fxmlLoader.load());
-        Stage stage = new Stage();
+        FXMLHoaDonController controller = loader.getController();
+        List<HangHoa> hoadon = tbSelectedHangHoa.getItems();
+        
         stage.setScene(scene);
-        stage.setTitle("Tra cứu khách hàng");
-        stage.show();
     }
     
     public void quanLyChiNhanhHandler(ActionEvent event) throws IOException {

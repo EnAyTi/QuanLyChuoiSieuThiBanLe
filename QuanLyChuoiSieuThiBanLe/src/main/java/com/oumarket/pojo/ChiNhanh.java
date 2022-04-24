@@ -27,8 +27,11 @@ public class ChiNhanh {
         this.quan = quan;
         this.thanhPho = thanhPho;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return this.thanhPho;
+    }
 
     /**
      * @return the maChiNhanh
