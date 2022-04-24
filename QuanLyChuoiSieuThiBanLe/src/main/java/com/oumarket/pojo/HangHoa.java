@@ -16,6 +16,7 @@ public class HangHoa {
     private String nguonGoc;
     private int maLoai;
     private int maGiamGia;
+    private int selectedCount;
 
     public HangHoa() {
     }
@@ -28,6 +29,7 @@ public class HangHoa {
         this.nguonGoc = nguonGoc;
         this.maLoai = maLoai;
         this.maGiamGia = maGiamGia;
+        this.selectedCount = 1;
     }
     
     
@@ -128,5 +130,19 @@ public class HangHoa {
      */
     public void setMaGiamGia(int maGiamGia) {
         this.maGiamGia = maGiamGia;
+    }
+    
+    /**
+     * @param selectedCount the selectedCount to set
+     */
+    public void setSelectedCountHang(int selectedCount) {
+        this.selectedCount = selectedCount;
+    }
+
+    /**
+     * @return the SelectedCount
+     */
+    public int getSelectedCount() {
+        return this.selectedCount;
     }
 }

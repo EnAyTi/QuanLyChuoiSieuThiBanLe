@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,10 +22,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
+import javafx.util.converter.IntegerStringConverter;
 
 /**
  * FXML Controller class
@@ -35,6 +39,7 @@ public class FXMLOUMarketController implements Initializable {
     private static final HangHoaServices s = new HangHoaServices();
   
     @FXML private TableView<HangHoa> tbHangHoa;
+    @FXML private TableView<HangHoa> tbSelectedHangHoa;
     @FXML private TextField txtKeyword;
     
     /**
@@ -59,6 +64,7 @@ public class FXMLOUMarketController implements Initializable {
         }
     }
     
+   
     private void loadTableView() {
         TableColumn colMaHang = new TableColumn("Mã hàng");
         colMaHang.setCellValueFactory(new PropertyValueFactory("maHang"));
@@ -80,6 +86,19 @@ public class FXMLOUMarketController implements Initializable {
                 TableCell c = (TableCell)((Button)evt.getSource()).getParent();
                 HangHoa h = (HangHoa) c.getTableRow().getItem();
                 
+                boolean isMatched = this.tbSelectedHangHoa.getItems().stream().anyMatch(
+                        (HangHoa hang) -> {
+                            if(hang.getMaHang().equals(h.getMaHang())) {
+                                hang.setSelectedCountHang(hang.getSelectedCount() + 1);
+                            }
+                            return hang.getMaHang().equals(h.getMaHang());
+                        }
+                );
+                
+                if(!isMatched) {
+                    this.tbSelectedHangHoa.getItems().add(h);
+                }
+                this.tbSelectedHangHoa.refresh();
             });
             
             TableCell cell = new TableCell();
@@ -88,6 +107,32 @@ public class FXMLOUMarketController implements Initializable {
         });
         
         this.tbHangHoa.getColumns().addAll(colMaHang, colTenHang, colNguonGoc, colDonGia, colAdd);
+        
+        
+        this.tbSelectedHangHoa.setEditable(true);
+        TableColumn colTenHang1 = new TableColumn("Tên hàng");
+        colTenHang1.setCellValueFactory(new PropertyValueFactory("tenHang"));
+        colTenHang1.setPrefWidth(250);
+        
+        TableColumn colDonGia1 = new TableColumn("Đơn giá");
+        colDonGia1.setCellValueFactory(new PropertyValueFactory("donGia"));
+        
+        TableColumn colSoLuong1 = new TableColumn("So luong");
+        colSoLuong1.setCellValueFactory(new PropertyValueFactory("selectedCount"));
+        colSoLuong1.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        colSoLuong1.setOnEditCommit(new EventHandler<CellEditEvent<HangHoa, Integer>>() {
+            @Override
+            public void handle(CellEditEvent<HangHoa, Integer> event) {
+                HangHoa hanghoa = event.getRowValue();
+                hanghoa.setSelectedCountHang(event.getNewValue());
+            }
+        });
+
+        this.tbSelectedHangHoa.getColumns().addAll(colTenHang1, colDonGia1, colSoLuong1);
+    }
+    
+    public void refreshTableHangHoa(ActionEvent event) {
+        this.loadTableData(null);
     }
     
     public void traCuuKhachHangHandler(ActionEvent event) throws IOException {
