@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
--- Host: localhost    Database: oumarket
+-- Host: 127.0.0.1    Database: oumarket
 -- ------------------------------------------------------
 -- Server version	8.0.28
 
@@ -126,7 +126,7 @@ CREATE TABLE `hanghoa` (
 
 LOCK TABLES `hanghoa` WRITE;
 /*!40000 ALTER TABLE `hanghoa` DISABLE KEYS */;
-INSERT INTO `hanghoa` VALUES ('333ecbbe-d57d-4f1b-b20f-ac995d1b3be0','Kẹo trái cây Starmix gói 80g',12314,24500,'United Kingdom',3,1),('5cd6e335-ecc7-4f2f-a313-fe7b7a44172b','Bia Red Ruby lon 330ml',100,10000,'Vietnam',8,1),('be9364a4-62b6-46a3-be61-46cef5e58219','Nước tăng lực Monster Enery Ultra lon 355ml',100,29600,'Hong Kong',8,2);
+INSERT INTO `hanghoa` VALUES ('5cd6e335-ecc7-4f2f-a313-fe7b7a44172b','Bia Red Ruby lon 330ml',100,10000,'Vietnam',8,1),('be9364a4-62b6-46a3-be61-46cef5e58219','Nước tăng lực Monster Enery Ultra lon 355ml',100,29600,'Hong Kong',8,2),('d1a17b1e-0b65-4951-b847-600dfe06ed08','Bánh Mỳ',10,10000,'VietNam',3,1),('d4f2b818-5332-4649-b27b-ee6fb1566752','Bánh kẹo',100,10000,'VN',3,2),('dff121e3-fe18-4409-8c13-7687217c9b99','Bang keo',100,100000,'Viet Nam',11,1);
 /*!40000 ALTER TABLE `hanghoa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -249,4 +249,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-21 21:23:46
+-- Dump completed on 2022-04-23 21:47:05
