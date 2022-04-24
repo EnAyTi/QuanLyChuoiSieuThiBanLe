@@ -103,4 +103,19 @@ public class ChiNhanhServices {
            return h;
        }
     }
+    
+    public List<ChiNhanh> getChiNhanh() throws SQLException {
+        List<ChiNhanh> results = new ArrayList<>();
+        try (Connection conn = JdbcUtils.getConn()) {
+            Statement stm = conn.createStatement();
+            ResultSet rs = stm.executeQuery("SELECT * FROM chinhanh");
+            
+            while (rs.next()) {
+                ChiNhanh p = new ChiNhanh(rs.getString("maChiNhanh"), rs.getString("soNha"), rs.getString("duong"), 
+                                        rs.getString("phuong"), rs.getString("quan"), rs.getString("thanhPho"));
+                results.add(p);
+            }
+        }
+        return results;
+    }
 }
