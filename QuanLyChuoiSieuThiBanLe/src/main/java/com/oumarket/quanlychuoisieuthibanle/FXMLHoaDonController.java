@@ -4,17 +4,19 @@
  */
 package com.oumarket.quanlychuoisieuthibanle;
 
-import com.oumarket.pojo.ChiNhanh;
 import com.oumarket.pojo.HangHoa;
+import com.oumarket.pojo.HoaDon;
 import com.oumarket.pojo.NhanVien;
-import com.oumarket.services.ChiNhanhServices;
+import com.oumarket.services.HoaDonServices;
 import com.oumarket.services.NhanVienServices;
+import com.oumarket.utils.Utils;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -25,6 +27,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -36,11 +39,11 @@ import javafx.stage.Stage;
  * @author anhtuan
  */
 public class FXMLHoaDonController implements Initializable {
-    List<HangHoa> gioHang = new ArrayList<>();
+    public List<HangHoa> gioHang = new ArrayList<>();
     
-    @FXML private ComboBox<ChiNhanh> cbChiNhanh;
     @FXML private ComboBox<NhanVien> cbNhanVien;
     @FXML private TextField txtTienKhachDua;
+    @FXML private TextField txtMaKH;
     @FXML private Label lbTongTien;
     @FXML private Label lbTienThua;
     /**
@@ -49,10 +52,8 @@ public class FXMLHoaDonController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        ChiNhanhServices cn = new ChiNhanhServices();
         NhanVienServices nv = new NhanVienServices();
         try {
-            this.cbChiNhanh.setItems(FXCollections.observableList(cn.getChiNhanh()));
             this.cbNhanVien.setItems(FXCollections.observableList(nv.getNhanVien()));
         } catch (SQLException ex) {
             Logger.getLogger(FXMLHoaDonController.class.getName()).log(Level.SEVERE, null, ex);
@@ -65,23 +66,13 @@ public class FXMLHoaDonController implements Initializable {
     
     public void setHoaDon(List<HangHoa> giohang){
         this.gioHang = giohang;
-        /*for(int i = 0; i < gioHang.size(); i++){
-            
-        }*/Float tongTien = 0.0f;
+        
+        Float tongTien = 0.0f;
         for (HangHoa s : gioHang) {
             tongTien += s.getDonGia() * s.getSelectedCount();
-            
         }
+        
         this.lbTongTien.setText(String.valueOf(tongTien));
-    }
-    
-    public void quayLai(ActionEvent event) throws IOException {
-        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("FXMLOUMarket.fxml"));
-        Parent ouMarketParent = loader.load();
-        Scene scene = new Scene(ouMarketParent);
-        stage.setScene(scene);
     }
     
     public void traCuuKhachHangHandler(ActionEvent event) throws IOException {
@@ -92,5 +83,29 @@ public class FXMLHoaDonController implements Initializable {
         stage.setScene(scene);
         stage.setTitle("Tra cứu khách hàng");
         stage.show();
+    }
+    
+    public void themHoaDonHandler(ActionEvent event) throws IOException {
+        String maHoaDon = UUID.randomUUID().toString();
+        java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
+        
+        HoaDon h = new HoaDon(maHoaDon, this.cbNhanVien.getSelectionModel().getSelectedItem().getMaNV(), 
+                            this.txtMaKH.getText(), date);
+        
+        HoaDonServices hd = new HoaDonServices();
+        
+        try {
+            hd.themHoaDon(h, gioHang);
+            Utils.getBox("Thêm hoá đơn thành công", Alert.AlertType.INFORMATION).show();
+            
+            Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("FXMLOUMarket.fxml"));
+            Parent ouMarketParent = loader.load();
+            Scene scene = new Scene(ouMarketParent);
+            stage.setScene(scene);
+        } catch (SQLException ex) {
+            Utils.getBox("Thêm hoá đơn không thành công", Alert.AlertType.WARNING).show();
+        }
     }
 }

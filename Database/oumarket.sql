@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: oumarket
+-- Host: localhost    Database: oumarket
 -- ------------------------------------------------------
 -- Server version	8.0.28
 
@@ -39,7 +39,7 @@ CREATE TABLE `chinhanh` (
 
 LOCK TABLES `chinhanh` WRITE;
 /*!40000 ALTER TABLE `chinhanh` DISABLE KEYS */;
-INSERT INTO `chinhanh` VALUES ('32ebf525-972d-4355-9ac5-e5b0caa4ca62','166A - 166B','Trần Văn Quang','10','Tân Bình','Hồ Chí Minh'),('3dc22861-4f30-480f-9fd0-ebfa076ef894','164 ','Nguyễn Văn Cừ','Bồ Đề','Long Biên','Hà Nội'),('8bf3b5f2-3297-4f72-8484-0a11c0de87f9','124 ','Phổ Quang','9','Phú Nhuận','Hồ Chí Minh'),('961f272c-3ec7-4870-9589-fe664f07bff5','560A','Nguyễn Văn Cừ','Gia Thụy','Long Biên','Hà Nội');
+INSERT INTO `chinhanh` VALUES ('1055964d-15fd-4f29-a98a-7b5f004cf00f','128','Hai Bà Trưng','Tân An','Ninh Kiều','Cần Thơ'),('2c3b6317-b603-4187-adb4-6d36f73715b3','371','Nguyễn Kiệm','3','Gò Vấp','Hồ Chí Minh'),('3651466d-91fe-447b-b367-e98f92f5b06c','108','19-05','Văn Quán','Hà Đông','Hà Nội'),('cf47fe91-9146-4059-b399-400eb2669790','372-374','Lạch Tray','Đằng Giang','Ngô Quyền','Hải Phòng');
 /*!40000 ALTER TABLE `chinhanh` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -54,7 +54,8 @@ CREATE TABLE `chitiethoadon` (
   `MaHoaDon` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `MaHang` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `SoLuong` int DEFAULT NULL,
-  `ThanhTien` int DEFAULT NULL,
+  `DonGia` float DEFAULT NULL,
+  `ThanhTien` float DEFAULT NULL,
   PRIMARY KEY (`MaHoaDon`,`MaHang`),
   KEY `FK_chitiethoadon_hanghoa1` (`MaHang`),
   CONSTRAINT `FK_chitiethoadon_hanghoa1` FOREIGN KEY (`MaHang`) REFERENCES `hanghoa` (`MaHang`),
@@ -68,6 +69,7 @@ CREATE TABLE `chitiethoadon` (
 
 LOCK TABLES `chitiethoadon` WRITE;
 /*!40000 ALTER TABLE `chitiethoadon` DISABLE KEYS */;
+INSERT INTO `chitiethoadon` VALUES ('163b3690-797a-4db7-a43e-e21d69d5be0a','5cd6e335-ecc7-4f2f-a313-fe7b7a44172b',2,10000,20000),('163b3690-797a-4db7-a43e-e21d69d5be0a','be9364a4-62b6-46a3-be61-46cef5e58219',2,29600,59200),('163b3690-797a-4db7-a43e-e21d69d5be0a','d1a17b1e-0b65-4951-b847-600dfe06ed08',4,10000,40000),('163b3690-797a-4db7-a43e-e21d69d5be0a','d4f2b818-5332-4649-b27b-ee6fb1566752',8,10000,80000),('163b3690-797a-4db7-a43e-e21d69d5be0a','dff121e3-fe18-4409-8c13-7687217c9b99',2,100000,200000),('63c2a548-548c-4fe5-b6e8-8d77963f60db','dff121e3-fe18-4409-8c13-7687217c9b99',6,100000,600000),('9111c721-645e-41bb-91a9-73949f04b1f1','5cd6e335-ecc7-4f2f-a313-fe7b7a44172b',6,10000,60000),('9111c721-645e-41bb-91a9-73949f04b1f1','be9364a4-62b6-46a3-be61-46cef5e58219',1,29600,29600),('9111c721-645e-41bb-91a9-73949f04b1f1','d1a17b1e-0b65-4951-b847-600dfe06ed08',1,10000,10000),('9111c721-645e-41bb-91a9-73949f04b1f1','d4f2b818-5332-4649-b27b-ee6fb1566752',1,10000,10000),('9111c721-645e-41bb-91a9-73949f04b1f1','dff121e3-fe18-4409-8c13-7687217c9b99',4,100000,400000);
 /*!40000 ALTER TABLE `chitiethoadon` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -156,6 +158,7 @@ CREATE TABLE `hoadon` (
 
 LOCK TABLES `hoadon` WRITE;
 /*!40000 ALTER TABLE `hoadon` DISABLE KEYS */;
+INSERT INTO `hoadon` VALUES ('163b3690-797a-4db7-a43e-e21d69d5be0a','da4e1a1b-e335-4d68-bddc-654749833230','1fb7fd43-7362-4cc6-b8dd-a85d5cd0c905','2022-04-24'),('63c2a548-548c-4fe5-b6e8-8d77963f60db','da4e1a1b-e335-4d68-bddc-654749833230','2ee3358e-703a-4ec2-a737-c77a468a022a','2022-04-24'),('9111c721-645e-41bb-91a9-73949f04b1f1','da4e1a1b-e335-4d68-bddc-654749833230','59e5b850-fb61-4ea4-aba7-b7a6ece4ebd9','2022-04-24');
 /*!40000 ALTER TABLE `hoadon` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -183,7 +186,7 @@ CREATE TABLE `khachhang` (
 
 LOCK TABLES `khachhang` WRITE;
 /*!40000 ALTER TABLE `khachhang` DISABLE KEYS */;
-INSERT INTO `khachhang` VALUES ('1206ab50-ff0d-4f73-a993-f25abee74bda','Nguyen Van A','0564243269','123 ','1996-06-03','123'),('196ae587-b058-4aae-9743-13efd89bb7c7','Nguyen Van C','0909870685','456','2000-04-07','123'),('1a87eeef-0e9a-4f48-a082-9a2950a05453','Tran Thi Kieu Tho','0387653488','789','1995-10-09','123'),('1fb7fd43-7362-4cc6-b8dd-a85d5cd0c905','Huynh Tuan Tu','0394689289','12','1997-06-09','123123'),('27a01cbb-1385-48e5-a354-8046e70d2e97','Phan Thi Nha Tran','0359468139','41','2004-09-06','123'),('2ee3358e-703a-4ec2-a737-c77a468a022a','Le Duy Cuong','0382304927','415','1993-04-25','123'),('372c7092-0c50-4f1a-b9e9-827093a522c1','Phan Thi Kieu Suong','0378109060','651','1989-03-05','123'),('40691c3a-21a3-4fe0-be5c-959ea265bfad','Vu Van Duc','0348094068','61','1999-12-20','123'),('54a08aa5-060e-4be3-8df9-f432f40be46d','La Thi Kieu Thu','0904606738','76','1990-09-10','123'),('59e5b850-fb61-4ea4-aba7-b7a6ece4ebd9','Nguyen Thi Lan','0904603738','46','1990-09-10','123');
+INSERT INTO `khachhang` VALUES ('1206ab50-ff0d-4f73-a993-f25abee74bda','Nguyen Van A','0564243269','123 ','1996-06-03','123'),('196ae587-b058-4aae-9743-13efd89bb7c7','Nguyen Van C','0909870685','456','2000-04-07','123'),('1a87eeef-0e9a-4f48-a082-9a2950a05453','Tran Thi Kieu Tho','0387653488','789','1995-10-09','123'),('1fb7fd43-7362-4cc6-b8dd-a85d5cd0c905','Huynh Tuan Tu','0394689289','12','1997-06-09','123123'),('27a01cbb-1385-48e5-a354-8046e70d2e97','Phan Thi Nha Tran','0359468139','41','2004-09-06','123'),('2ee3358e-703a-4ec2-a737-c77a468a022a','Le Duy Cuong','0382304927','415','1993-04-25','123'),('372c7092-0c50-4f1a-b9e9-827093a522c1','Phan Thi Kieu Suong','0378109060','651','1989-03-05','123'),('40691c3a-21a3-4fe0-be5c-959ea265bfad','Vu Van Duc','0348094068','61','1999-12-20','123'),('54a08aa5-060e-4be3-8df9-f432f40be46d','La Thi Kieu Thu','0904606738','76','1990-09-10','123'),('59e5b850-fb61-4ea4-aba7-b7a6ece4ebd9','Nguyen Thi Lan','0904603738','46','1990-09-10','123'),('c62df05a-f4b4-4c3f-8aeb-490a4edca1a0','4123123','123123123',NULL,NULL,NULL),('Đào Nguyên An','MR An','123456789',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `khachhang` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -249,4 +252,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-23 21:47:05
+-- Dump completed on 2022-04-24 19:35:42

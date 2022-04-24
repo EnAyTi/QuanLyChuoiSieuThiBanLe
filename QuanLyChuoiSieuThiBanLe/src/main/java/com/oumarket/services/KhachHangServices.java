@@ -44,4 +44,15 @@ public class KhachHangServices {
            return khachhangs;
        }
     }
+    
+    public boolean themKhachHang(KhachHang c) throws SQLException {
+        try (Connection conn = JdbcUtils.getConn()) {
+            PreparedStatement stm = conn.prepareStatement("INSERT INTO khachhang(MaKH, TenKH, SDT) VALUES(?, ?, ?)");
+            stm.setString(1, c.getMaKH());
+            stm.setString(2, c.getTenKH());
+            stm.setString(3, c.getSdt());
+            
+            return stm.executeUpdate() > 0;
+        }
+    }
 }
