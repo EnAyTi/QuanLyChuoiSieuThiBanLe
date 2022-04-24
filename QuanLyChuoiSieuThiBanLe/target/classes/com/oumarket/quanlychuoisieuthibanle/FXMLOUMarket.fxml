@@ -34,9 +34,9 @@
                <content>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Button layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#quanLyChiNhanhHandler" text="Chi nhánh" />
-                        <Button layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#quanLyNhanVienHandler" text="Nhân viên" />
-                        <Button layoutX="20.0" layoutY="54.0" mnemonicParsing="false" onAction="#quanLyHangHoaHandler" text="Hàng hoá" />
+                        <Button layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#quanLyChiNhanhHandler" prefHeight="50.0" prefWidth="120.0" text="Chi nhánh" />
+                        <Button layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#quanLyNhanVienHandler" prefHeight="50.0" prefWidth="120.0" text="Nhân viên" />
+                        <Button layoutX="20.0" layoutY="54.0" mnemonicParsing="false" onAction="#quanLyHangHoaHandler" prefHeight="50.0" prefWidth="120.0" text="Hàng hoá" />
                      </children>
                   </VBox>
                </content>

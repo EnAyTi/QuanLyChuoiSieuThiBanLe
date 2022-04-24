@@ -12,12 +12,13 @@ public class ChiTietHoaDon {
     private String maHoaDon;
     private String maHang;
     private int soLuong;
+    private float donGia;
     private float thanhTien;
 
     public ChiTietHoaDon() {
     }
 
-    public ChiTietHoaDon(String maHoaDon, String maHang, int soLuong, float thanhTien) {
+    public ChiTietHoaDon(String maHoaDon, String maHang, int soLuong, float donGia, float thanhTien) {
         this.maHoaDon = maHoaDon;
         this.maHang = maHang;
         this.soLuong = soLuong;
@@ -80,5 +81,19 @@ public class ChiTietHoaDon {
      */
     public void setThanhTien(float thanhTien) {
         this.thanhTien = thanhTien;
+    }
+
+    /**
+     * @return the donGia
+     */
+    public float getDonGia() {
+        return donGia;
+    }
+
+    /**
+     * @param donGia the donGia to set
+     */
+    public void setDonGia(float donGia) {
+        this.donGia = donGia;
     }
 }
