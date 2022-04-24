@@ -147,6 +147,7 @@ public class FXMLOUMarketController implements Initializable {
         
         FXMLHoaDonController controller = loader.getController();
         List<HangHoa> hoadon = tbSelectedHangHoa.getItems();
+        controller.setHoaDon(hoadon);
         
         stage.setScene(scene);
     }

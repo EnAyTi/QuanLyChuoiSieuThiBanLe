@@ -31,8 +31,11 @@ public class HangHoa {
         this.maGiamGia = maGiamGia;
         this.selectedCount = 1;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return this.tenHang;
+    }
 
     /**
      * @return the maHang
