@@ -165,25 +165,29 @@ public class FXMLQuanLyHangHoaController implements Initializable {
     }
     
     public void themHangHoaHandler(ActionEvent event) {
-        HangHoa h = new HangHoa(UUID.randomUUID().toString(), this.txtTenHang.getText(), 
+        if (txtTenHang.getText().trim().equals("") || txtSoLuong.getText().trim().equals("") || txtDonGia.getText().trim().equals("") || txtNguonGoc.getText().trim().equals("") || cbPhanLoai.getSelectionModel().isEmpty() || cbGiamGia.getSelectionModel().isEmpty())
+            Utils.getBox("Xin hãy nhập đẩy đủ thông tin", Alert.AlertType.WARNING).show();
+        else {
+            HangHoa h = new HangHoa(UUID.randomUUID().toString(), this.txtTenHang.getText(), 
                                 Integer.parseInt(this.txtSoLuong.getText()), 
                                 Float.parseFloat(this.txtDonGia.getText()), this.txtNguonGoc.getText(), 
                                 this.cbPhanLoai.getSelectionModel().getSelectedItem().getMaLoai(), 
                                 this.cbGiamGia.getSelectionModel().getSelectedItem().getMaGiamGia());
         
-        HangHoaServices hs = new HangHoaServices();
-        try {
-            hs.themHangHoa(h);
-            Utils.getBox("Thêm hàng hoá thành công", Alert.AlertType.INFORMATION).show();
-            this.loadTableData(null);
-            this.txtTenHang.setText(null);
-            this.txtSoLuong.setText(null);
-            this.txtDonGia.setText(null);
-            this.txtNguonGoc.setText(null);
-            this.cbPhanLoai.getSelectionModel().clearSelection();
-            this.cbGiamGia.getSelectionModel().clearSelection();
-        } catch (SQLException ex) {
-            Utils.getBox("Thêm hàng hoá không thành công", Alert.AlertType.WARNING).show();
+            HangHoaServices hs = new HangHoaServices();
+            try {
+                hs.themHangHoa(h);
+                Utils.getBox("Thêm hàng hoá thành công", Alert.AlertType.INFORMATION).show();
+                this.loadTableData(null);
+                this.txtTenHang.setText(null);
+                this.txtSoLuong.setText(null);
+                this.txtDonGia.setText(null);
+                this.txtNguonGoc.setText(null);
+                this.cbPhanLoai.getSelectionModel().clearSelection();
+                this.cbGiamGia.getSelectionModel().clearSelection();
+            } catch (SQLException ex) {
+                Utils.getBox("Thêm hàng hoá không thành công", Alert.AlertType.WARNING).show();
+            }
         }
     }
     

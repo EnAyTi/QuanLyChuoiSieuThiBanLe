@@ -169,26 +169,33 @@ public class FXMLQuanLyNhanVienController implements Initializable {
     }
     
     public void themNhanVienHandler(ActionEvent event) {
-        NhanVien n = new NhanVien(UUID.randomUUID().toString(), this.txtHoTen.getText(), 
-                                java.sql.Date.valueOf(this.dpNamSinh.getValue()), this.txtSDT.getText(), 
-                                this.txtEmail.getText(), rdoLabel, this.txtDiaChi.getText());
-        
-        NhanVienServices nv = new NhanVienServices();
-        try {
-            nv.themNhanVien(n);
-            Utils.getBox("Thêm nhân viên thành công", Alert.AlertType.INFORMATION).show();
-            this.loadTableData(null);
-            this.txtHoTen.setText(null);
-            this.dpNamSinh.setValue(null);
-            this.rdoNam.setSelected(false);
-            this.rdoNu.setSelected(false);
-            this.txtSDT.setText(null);
-            this.txtEmail.setText(null);
-            this.txtDiaChi.setText(null);
-        } catch (SQLException ex) {
-            Utils.getBox("Thêm nhân viên không thành công", Alert.AlertType.WARNING).show();
-        }
-   }
+        if (rdoNam.isSelected() || rdoNu.isSelected())
+            if (txtHoTen.getText().trim().equals("") || dpNamSinh.getValue() == null || txtSDT.getText().trim().equals("") ||txtDiaChi.getText().trim().equals(""))
+                    Utils.getBox("Xin hãy nhập đẩy đủ thông tin", Alert.AlertType.WARNING).show();
+            else  {
+                NhanVien n = new NhanVien(UUID.randomUUID().toString(), this.txtHoTen.getText(), 
+                                    java.sql.Date.valueOf(this.dpNamSinh.getValue()), this.txtSDT.getText(), 
+                                    this.txtEmail.getText(), rdoLabel, this.txtDiaChi.getText());
+
+                NhanVienServices nv = new NhanVienServices();
+                try {
+                    nv.themNhanVien(n);
+                    Utils.getBox("Thêm nhân viên thành công", Alert.AlertType.INFORMATION).show();
+                    this.loadTableData(null);
+                    this.txtHoTen.setText(null);
+                    this.dpNamSinh.setValue(null);
+                    this.rdoNam.setSelected(false);
+                    this.rdoNu.setSelected(false);
+                    this.txtSDT.setText(null);
+                    this.txtEmail.setText(null);
+                    this.txtDiaChi.setText(null);
+                } catch (SQLException ex) {
+                    Utils.getBox("Thêm nhân viên không thành công", Alert.AlertType.WARNING).show();
+                }
+            }
+        else
+            Utils.getBox("Xin hãy nhập đẩy đủ thông tin", Alert.AlertType.WARNING).show();
+    }
     
     public void editNhanVienHandler(ActionEvent event) {
         NhanVien n = new NhanVien(this.txtMaNhanVien.getText(), this.txtHoTen.getText(), 
