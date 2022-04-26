@@ -85,6 +85,15 @@ public class FXMLHoaDonController implements Initializable {
         stage.show();
     }
     
+    public void quayLai(ActionEvent event) throws IOException {
+        Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("FXMLOUMarket.fxml"));
+        Parent ouMarketParent = loader.load();
+        Scene scene = new Scene(ouMarketParent);
+        stage.setScene(scene);
+    }
+    
     public void themHoaDonHandler(ActionEvent event) throws IOException {
         String maHoaDon = UUID.randomUUID().toString();
         java.sql.Date date = new java.sql.Date(System.currentTimeMillis());

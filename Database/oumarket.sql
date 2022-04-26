@@ -57,9 +57,8 @@ CREATE TABLE `chitiethoadon` (
   `DonGia` float DEFAULT NULL,
   `ThanhTien` float DEFAULT NULL,
   PRIMARY KEY (`MaHoaDon`,`MaHang`),
-  KEY `FK_chitiethoadon_hanghoa1` (`MaHang`),
-  CONSTRAINT `FK_chitiethoadon_hanghoa1` FOREIGN KEY (`MaHang`) REFERENCES `hanghoa` (`MaHang`),
-  CONSTRAINT `FK_chitiethoadon_hoadon1` FOREIGN KEY (`MaHoaDon`) REFERENCES `hoadon` (`MaHoaDon`)
+  KEY `FK_chitiethoadon_hanghoa_idx` (`MaHang`),
+  CONSTRAINT `FK_chitiethoadon_hoadon` FOREIGN KEY (`MaHoaDon`) REFERENCES `hoadon` (`MaHoaDon`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -69,7 +68,7 @@ CREATE TABLE `chitiethoadon` (
 
 LOCK TABLES `chitiethoadon` WRITE;
 /*!40000 ALTER TABLE `chitiethoadon` DISABLE KEYS */;
-INSERT INTO `chitiethoadon` VALUES ('163b3690-797a-4db7-a43e-e21d69d5be0a','5cd6e335-ecc7-4f2f-a313-fe7b7a44172b',2,10000,20000),('163b3690-797a-4db7-a43e-e21d69d5be0a','be9364a4-62b6-46a3-be61-46cef5e58219',2,29600,59200),('163b3690-797a-4db7-a43e-e21d69d5be0a','d1a17b1e-0b65-4951-b847-600dfe06ed08',4,10000,40000),('163b3690-797a-4db7-a43e-e21d69d5be0a','d4f2b818-5332-4649-b27b-ee6fb1566752',8,10000,80000),('163b3690-797a-4db7-a43e-e21d69d5be0a','dff121e3-fe18-4409-8c13-7687217c9b99',2,100000,200000),('63c2a548-548c-4fe5-b6e8-8d77963f60db','dff121e3-fe18-4409-8c13-7687217c9b99',6,100000,600000),('9111c721-645e-41bb-91a9-73949f04b1f1','5cd6e335-ecc7-4f2f-a313-fe7b7a44172b',6,10000,60000),('9111c721-645e-41bb-91a9-73949f04b1f1','be9364a4-62b6-46a3-be61-46cef5e58219',1,29600,29600),('9111c721-645e-41bb-91a9-73949f04b1f1','d1a17b1e-0b65-4951-b847-600dfe06ed08',1,10000,10000),('9111c721-645e-41bb-91a9-73949f04b1f1','d4f2b818-5332-4649-b27b-ee6fb1566752',1,10000,10000),('9111c721-645e-41bb-91a9-73949f04b1f1','dff121e3-fe18-4409-8c13-7687217c9b99',4,100000,400000);
+INSERT INTO `chitiethoadon` VALUES ('163b3690-797a-4db7-a43e-e21d69d5be0a','5cd6e335-ecc7-4f2f-a313-fe7b7a44172b',2,10000,20000),('163b3690-797a-4db7-a43e-e21d69d5be0a','be9364a4-62b6-46a3-be61-46cef5e58219',2,29600,59200),('163b3690-797a-4db7-a43e-e21d69d5be0a','d1a17b1e-0b65-4951-b847-600dfe06ed08',4,10000,40000),('163b3690-797a-4db7-a43e-e21d69d5be0a','d4f2b818-5332-4649-b27b-ee6fb1566752',8,10000,80000),('9111c721-645e-41bb-91a9-73949f04b1f1','5cd6e335-ecc7-4f2f-a313-fe7b7a44172b',6,10000,60000),('9111c721-645e-41bb-91a9-73949f04b1f1','be9364a4-62b6-46a3-be61-46cef5e58219',1,29600,29600),('9111c721-645e-41bb-91a9-73949f04b1f1','d1a17b1e-0b65-4951-b847-600dfe06ed08',1,10000,10000),('9111c721-645e-41bb-91a9-73949f04b1f1','d4f2b818-5332-4649-b27b-ee6fb1566752',1,10000,10000);
 /*!40000 ALTER TABLE `chitiethoadon` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -128,7 +127,7 @@ CREATE TABLE `hanghoa` (
 
 LOCK TABLES `hanghoa` WRITE;
 /*!40000 ALTER TABLE `hanghoa` DISABLE KEYS */;
-INSERT INTO `hanghoa` VALUES ('5cd6e335-ecc7-4f2f-a313-fe7b7a44172b','Bia Red Ruby lon 330ml',100,10000,'Vietnam',8,1),('be9364a4-62b6-46a3-be61-46cef5e58219','Nước tăng lực Monster Enery Ultra lon 355ml',100,29600,'Hong Kong',8,2),('d1a17b1e-0b65-4951-b847-600dfe06ed08','Bánh Mỳ',10,10000,'VietNam',3,1),('d4f2b818-5332-4649-b27b-ee6fb1566752','Bánh kẹo',100,10000,'VN',3,2),('dff121e3-fe18-4409-8c13-7687217c9b99','Bang keo',100,100000,'Viet Nam',11,1);
+INSERT INTO `hanghoa` VALUES ('5cd6e335-ecc7-4f2f-a313-fe7b7a44172b','Bia Red Ruby lon 330ml',100,10000,'Vietnam',8,1),('be9364a4-62b6-46a3-be61-46cef5e58219','Nước tăng lực Monster Enery Ultra lon 355ml',100,29600,'Hong Kong',8,2),('d1a17b1e-0b65-4951-b847-600dfe06ed08','Bánh Mỳ',10,10000,'VietNam',3,1),('d4f2b818-5332-4649-b27b-ee6fb1566752','Bánh kẹo',100,10000,'VN',3,2);
 /*!40000 ALTER TABLE `hanghoa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -252,4 +251,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-24 19:35:42
+-- Dump completed on 2022-04-26 16:07:01
