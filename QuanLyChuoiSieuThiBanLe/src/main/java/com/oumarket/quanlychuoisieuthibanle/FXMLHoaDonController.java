@@ -95,26 +95,28 @@ public class FXMLHoaDonController implements Initializable {
     }
     
     public void themHoaDonHandler(ActionEvent event) throws IOException {
-        String maHoaDon = UUID.randomUUID().toString();
         java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
-        
-        HoaDon h = new HoaDon(maHoaDon, this.cbNhanVien.getSelectionModel().getSelectedItem().getMaNV(), 
+        if (cbNhanVien.getSelectionModel().isEmpty() || txtMaKH.getText().trim().equals(""))
+            Utils.getBox("Xin hãy nhập đẩy đủ thông tin", Alert.AlertType.WARNING).show();
+        else {
+            HoaDon h = new HoaDon(UUID.randomUUID().toString(), this.cbNhanVien.getSelectionModel().getSelectedItem().getMaNV(), 
                             this.txtMaKH.getText(), date);
         
-        HoaDonServices hd = new HoaDonServices();
-        
-        try {
-            hd.themHoaDon(h, gioHang);
-            Utils.getBox("Thêm hoá đơn thành công", Alert.AlertType.INFORMATION).show();
-            
-            Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("FXMLOUMarket.fxml"));
-            Parent ouMarketParent = loader.load();
-            Scene scene = new Scene(ouMarketParent);
-            stage.setScene(scene);
-        } catch (SQLException ex) {
-            Utils.getBox("Thêm hoá đơn không thành công", Alert.AlertType.WARNING).show();
+            HoaDonServices hd = new HoaDonServices();
+
+            try {
+                hd.themHoaDon(h, gioHang);
+                Utils.getBox("Thêm hoá đơn thành công", Alert.AlertType.INFORMATION).show();
+
+                Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("FXMLOUMarket.fxml"));
+                Parent ouMarketParent = loader.load();
+                Scene scene = new Scene(ouMarketParent);
+                stage.setScene(scene);
+            } catch (SQLException ex) {
+                Utils.getBox("Thêm hoá đơn không thành công", Alert.AlertType.WARNING).show();
+            }
         }
     }
 }

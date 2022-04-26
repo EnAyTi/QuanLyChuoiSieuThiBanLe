@@ -14,9 +14,9 @@
         <URL value="@/com/oumarket/styles/style.css" />
     </stylesheets>
    <children>
-      <ComboBox fx:id="cbNhanVien" layoutX="125.0" layoutY="49.0" prefHeight="26.0" prefWidth="186.0" />
-      <Button layoutX="175.0" layoutY="85.0" mnemonicParsing="false" onAction="#traCuuKhachHangHandler" prefHeight="26.0" prefWidth="135.0" text="Tra cứu khách hàng" />
-      <TextField fx:id="txtMaKH" layoutX="126.0" layoutY="123.0" prefHeight="26.0" prefWidth="185.0">
+      <ComboBox fx:id="cbNhanVien" layoutX="125.0" layoutY="49.0" prefHeight="26.0" prefWidth="186.0" AnchorPane.leftAnchor="125.0" AnchorPane.rightAnchor="38.599999999999994" />
+      <Button layoutX="175.0" layoutY="85.0" mnemonicParsing="false" onAction="#traCuuKhachHangHandler" prefHeight="26.0" prefWidth="135.0" text="Tra cứu khách hàng" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="39.80000000000001" />
+      <TextField fx:id="txtMaKH" layoutX="126.0" layoutY="123.0" prefHeight="26.0" prefWidth="185.0" AnchorPane.leftAnchor="126.0" AnchorPane.rightAnchor="38.400000000000006">
          <font>
             <Font size="11.0" />
          </font>
@@ -39,8 +39,8 @@
       <Label fx:id="lbTongTien" layoutX="225.0" layoutY="160.0" prefHeight="18.0" prefWidth="100.0" textFill="RED" />
       <Label fx:id="lbTienThua" layoutX="225.0" layoutY="239.0" prefHeight="18.0" prefWidth="100.0" textFill="#5500ff" />
       <Button layoutX="27.0" layoutY="283.0" mnemonicParsing="false" onAction="#themHoaDonHandler" prefHeight="26.0" prefWidth="100.0" text="Lưu hoá đơn" />
-      <Label layoutX="26.0" layoutY="53.0" prefHeight="18.0" prefWidth="100.0" text="Nhân viên:" />
-      <Label layoutX="27.0" layoutY="127.0" prefHeight="18.0" prefWidth="100.0" text="Khách hàng:" />
+      <Label layoutX="26.0" layoutY="53.0" prefHeight="18.0" prefWidth="100.0" text="Nhân viên:" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="224.0" />
+      <Label layoutX="27.0" layoutY="127.0" prefHeight="18.0" prefWidth="100.0" text="Khách hàng:" AnchorPane.leftAnchor="27.0" AnchorPane.rightAnchor="223.0" />
       <Button layoutX="225.0" layoutY="283.0" mnemonicParsing="false" onAction="#quayLai" prefHeight="26.0" prefWidth="100.0" text="Quay lại" />
    </children>
 </AnchorPane>

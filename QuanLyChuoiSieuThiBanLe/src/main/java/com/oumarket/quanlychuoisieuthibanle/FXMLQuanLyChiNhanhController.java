@@ -144,24 +144,29 @@ public class FXMLQuanLyChiNhanhController implements Initializable {
     }
     
     public void themChiNhanhHandler(ActionEvent event) {
-        ChiNhanh c = new ChiNhanh(UUID.randomUUID().toString(), this.txtSoNha.getText(), 
-                                this.txtDuong.getText(), this.txtPhuong.getText(), 
-                                this.txtQuan.getText(), this.txtThanhPho.getText());
-        
-        ChiNhanhServices cs = new ChiNhanhServices();
-        try {
-            cs.themChiNhanh(c);
-            Utils.getBox("Thêm chi nhánh thành công", Alert.AlertType.INFORMATION).show();
-            this.loadTableData(null);
-            this.txtMaChiNhanh.setText(null);
-            this.txtSoNha.setText(null);
-            this.txtDuong.setText(null);
-            this.txtPhuong.setText(null);
-            this.txtQuan.setText(null);
-            this.txtThanhPho.setText(null);
-        } catch (SQLException ex) {
-            Utils.getBox("Thêm chi nhánh không thành công", Alert.AlertType.WARNING).show();
-        }
+        if (txtSoNha.getText().trim().equals("") || txtDuong.getText().trim().equals("") || txtPhuong.getText().trim().equals("") || txtQuan.getText().trim().equals("") ||txtThanhPho.getText().trim().equals(""))
+                Utils.getBox("Xin hãy nhập đẩy đủ thông tin", Alert.AlertType.WARNING).show();
+        else  {
+            ChiNhanh c = new ChiNhanh(UUID.randomUUID().toString(), this.txtSoNha.getText(), 
+                                    this.txtDuong.getText(), this.txtPhuong.getText(), 
+                                    this.txtQuan.getText(), this.txtThanhPho.getText());
+
+            ChiNhanhServices cs = new ChiNhanhServices();
+            try {
+                cs.themChiNhanh(c);
+                Utils.getBox("Thêm chi nhánh thành công", Alert.AlertType.INFORMATION).show();
+                this.loadTableData(null);
+                this.txtMaChiNhanh.setText(null);
+                this.txtSoNha.setText(null);
+                this.txtDuong.setText(null);
+                this.txtPhuong.setText(null);
+                this.txtQuan.setText(null);
+                this.txtThanhPho.setText(null);
+            } catch (SQLException ex) {
+                Utils.getBox("Thêm chi nhánh không thành công", Alert.AlertType.WARNING).show();
+            }
+        }           
+            
     }
     
     public void editChiNhanhHandler(ActionEvent event) {
