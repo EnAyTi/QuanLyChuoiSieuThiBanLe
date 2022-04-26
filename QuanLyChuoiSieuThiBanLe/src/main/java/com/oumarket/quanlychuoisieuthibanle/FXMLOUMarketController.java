@@ -6,6 +6,7 @@ package com.oumarket.quanlychuoisieuthibanle;
 
 import com.oumarket.pojo.HangHoa;
 import com.oumarket.services.HangHoaServices;
+import com.oumarket.utils.Utils;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -22,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -147,9 +149,15 @@ public class FXMLOUMarketController implements Initializable {
         
         FXMLHoaDonController controller = loader.getController();
         List<HangHoa> hoadon = tbSelectedHangHoa.getItems();
-        controller.setHoaDon(hoadon);
-        
-        stage.setScene(scene);
+        if (hoadon.isEmpty())
+            Utils.getBox("Không có sản phẩm trong giỏ hàng!!!", Alert.AlertType.WARNING).show();
+        else
+        {
+            controller.setHoaDon(hoadon);
+
+            stage.setResizable(false);
+            stage.setScene(scene);
+        }
     }
     
     public void quanLyChiNhanhHandler(ActionEvent event) throws IOException {
@@ -159,6 +167,7 @@ public class FXMLOUMarketController implements Initializable {
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Quản lý chi nhánh");
+        stage.setResizable(false);
         stage.show();
     }
     
@@ -169,6 +178,7 @@ public class FXMLOUMarketController implements Initializable {
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Quản lý nhân viên");
+        stage.setResizable(false);
         stage.show();
     }
     
@@ -179,6 +189,7 @@ public class FXMLOUMarketController implements Initializable {
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle("Quản lý hàng hoá");
+        stage.setResizable(false);
         stage.show();
     }
 }

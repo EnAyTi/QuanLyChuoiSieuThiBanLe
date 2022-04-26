@@ -38,8 +38,9 @@
       <Label layoutX="26.0" layoutY="160.0" prefHeight="18.0" prefWidth="100.0" text="Tổng thanh toán:" />
       <Label fx:id="lbTongTien" layoutX="225.0" layoutY="160.0" prefHeight="18.0" prefWidth="100.0" textFill="RED" />
       <Label fx:id="lbTienThua" layoutX="225.0" layoutY="239.0" prefHeight="18.0" prefWidth="100.0" textFill="#5500ff" />
-      <Button layoutX="125.0" layoutY="283.0" mnemonicParsing="false" onAction="#themHoaDonHandler" prefHeight="26.0" prefWidth="100.0" text="Lưu hoá đơn" />
+      <Button layoutX="27.0" layoutY="283.0" mnemonicParsing="false" onAction="#themHoaDonHandler" prefHeight="26.0" prefWidth="100.0" text="Lưu hoá đơn" />
       <Label layoutX="26.0" layoutY="53.0" prefHeight="18.0" prefWidth="100.0" text="Nhân viên:" />
       <Label layoutX="27.0" layoutY="127.0" prefHeight="18.0" prefWidth="100.0" text="Khách hàng:" />
+      <Button layoutX="225.0" layoutY="283.0" mnemonicParsing="false" onAction="#quayLai" prefHeight="26.0" prefWidth="100.0" text="Quay lại" />
    </children>
 </AnchorPane>
